@@ -1,0 +1,53 @@
+
+<ul class="nav-list">
+	<li><a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ),
+                        'default',true
+                    );
+                 ?>"
+		title="Home">Home</a></li>
+
+		<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'coupon'),
+                        'default',true
+                    );
+                 ?>"
+		title="Cerca il tuo coupon preferito">Coupon</a></li>
+
+		<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'aziende'),
+                        'default',true
+                    );
+                 ?>"
+		title="Cerca la tua azienda preferita">Aziende</a></li>
+
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'who'),
+                        'default',true
+                    );
+                 ?>"
+		title="Il nostro profilo aziendale">Chi siamo</a></li>
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'faq'),
+                        'default',true
+                    );
+                 ?>"
+		title="Le risposte a tutte le tue domande">Faq</a></li>
+
+</ul>
