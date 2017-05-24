@@ -25,7 +25,8 @@ resources.db.adapter = PDO_MYSQL
 resources.db.params.host = localhost
 resources.db.params.username = root
 resources.db.params.password = ""
-resources.db.params.dbname = tecwebdb
+resources.db.params.dbname = database1
+
 
 
 [staging : production]

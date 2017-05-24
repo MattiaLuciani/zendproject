@@ -13,7 +13,6 @@ class PublicController extends Zend_Controller_Action
     public function indexAction()
     {
 		// action body
-        
     }
 
     public function faqAction()
@@ -32,11 +31,7 @@ class PublicController extends Zend_Controller_Action
         $this->render($page);
     }
 
-    public function aziendeAction()
-    {
-			$aziende = new Application_Model_DbTable_Azienda();
-$this->view->aziende = $aziende->fetchAll();
-    }
+
 
     public function couponAction()
     {
@@ -48,8 +43,9 @@ $this->view->coupon = $coupon->fetchAll();
     {
         // action body
     }
+
     public function authenticateAction()
-	{
+    {
         $request = $this->getRequest();
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
@@ -64,10 +60,9 @@ $this->view->coupon = $coupon->fetchAll();
             return $this->render('login');
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->role);
-	}
+    }
 
-	// Validazione AJAX
-	public function validateloginAction()
+    public function validateloginAction()
     {
         $this->_helper->getHelper('layout')->disableLayout();
     		$this->_helper->viewRenderer->setNoRender();
@@ -79,7 +74,7 @@ $this->view->coupon = $coupon->fetchAll();
         }
     }
 
-	private function getLoginForm()
+    private function getLoginForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
 		$this->_form = new Application_Form_Public_Auth_Login();
@@ -89,6 +84,13 @@ $this->view->coupon = $coupon->fetchAll();
 			'default'
 		));
 		return $this->_form;
-    } 
+    }
+
+    public function companyAction()
+    {
+      $company = new Application_Model_DbTable_Company();
+$this->view->company = $company->fetchAll();
+    }
+
 
 }

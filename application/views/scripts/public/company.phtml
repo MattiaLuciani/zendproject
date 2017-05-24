@@ -1,0 +1,25 @@
+<?php
+$this->title = "company";
+$this->headTitle($this->title);
+?>
+
+<table>
+<tr>
+<th>Nome</th>
+<th>Emal</th>
+<th>SitoWeb</th>
+<th>Descrizione</th>
+<th>&nbsp;</th>
+</tr>
+<?php foreach($this->company as $company) : ?>
+<tr>
+<td><?php echo $this->escape($company->name);?></td>
+<td><?php echo $this->escape($company->email);?></td>
+<td><?php echo $this->escape($company->website);?></td>
+<td><?php echo $this->escape($company->description);?></td>
+
+
+</td>
+</tr>
+<?php endforeach; ?>
+</table>

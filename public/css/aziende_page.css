@@ -1,0 +1,11 @@
+body{
+	background-color: white;
+	overflow: visible;
+}
+.content{
+	visibility: visible;
+	top: 0px;
+}
+.content .content-element .inner{
+	overflow: hidden;
+}
