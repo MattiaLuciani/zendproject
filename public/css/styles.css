@@ -157,6 +157,13 @@ nav:after{
 	display: flex;
 	justify-content: center;
 }
+.content .content-wrapper .content-element{
+	display: flex;
+	flex-wrap: wrap;
+}
+.content .content-wrapper .content-element .item{
+	margin: 10px;
+}
 .content .content-wrapper .content-element .item .inner{
 	width:400px;
 	height: 300px;

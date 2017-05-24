@@ -5,7 +5,9 @@
     <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/styles.css'); ?>
     <?= $this->headLink()->appendStylesheet("https://fonts.googleapis.com/css?family=Lobster|Montserrat|Ropa+Sans") ?>
     <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/font-awesome-4.7.0/css/font-awesome.min.css') ?>
+    <?= $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-3.2.1.min.js'); ?>
     <?= $this->headTitle(); ?>
+
 </head>
 <body>
 
@@ -16,12 +18,9 @@
 		<?= $this->render('_topnavmain.phtml') ?>
 	</nav>
 	<!-- end #menu -->
-  	  <div id="bottom">
-    	<div id="bottom">
 	  	  <?php echo $this->layout()->content; ?>
-	    </div>
-  	  </div>
-
+	  	  
+    <?= $this->headScript()->appendFile($this->baseUrl() . '/js/search_script.js'); ?>
 
 	<!-- end #content -->
 	<div id="footer">
