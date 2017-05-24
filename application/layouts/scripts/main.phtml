@@ -2,24 +2,20 @@
 <html>
 <head>
 	<?= $this->headMeta(); ?>
-    <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/style.css'); ?>
+    <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/styles.css'); ?>
+    <?= $this->headLink()->appendStylesheet("https://fonts.googleapis.com/css?family=Lobster|Montserrat|Ropa+Sans") ?>
+    <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/font-awesome-4.7.0/css/font-awesome.min.css') ?>
     <?= $this->headTitle(); ?>
 </head>
 <body>
-<div id="wrapper">
-	<div id="header">
-		<div class="logo-holder">
-				<h2>Coupons</h2>
-		</div>
-	</div>
 
+
+	
 	<!-- end #header -->
-	<div id="menu">
-        <?= $this->render('_topnavmain.phtml') ?>
-	</div>
-
+	<nav>
+		<?= $this->render('_topnavmain.phtml') ?>
+	</nav>
 	<!-- end #menu -->
-
   	  <div id="bottom">
     	<div id="bottom">
 	  	  <?php echo $this->layout()->content; ?>
