@@ -45,13 +45,15 @@ CREATE TABLE `category` (
 CREATE TABLE `company` (
   `companyid` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `emal` varchar(30) NOT NULL,
   `website` varchar(30) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `address` varchar(50) NOT NULL,
   `category` varchar(20) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `img` varchar(256) DEFAULT NULL
+  `img` varchar(256) DEFAULT NULL,
+   FOREIGN KEY (category) REFERENCES category(name)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -64,7 +66,9 @@ CREATE TABLE `coupon` (
   `couponId` int(11) NOT NULL,
   `promoId` int(11) NOT NULL,
   `username` int(11) NOT NULL,
-  `used` tinyint(1) NOT NULL DEFAULT '0'
+  `used` tinyint(1) NOT NULL DEFAULT '0',
+  FOREIGN KEY (promoId) REFERENCES promotion(promoId),
+  FOREIGN KEY (username) REFERENCES user(username)  
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -74,13 +78,15 @@ CREATE TABLE `coupon` (
 --
 
 CREATE TABLE `promotion` (
-  `promoid` int(11) NOT NULL,
+  `promoId` int(11) NOT NULL,
   `company` varchar(30) NOT NULL,
-  `datebegun` date DEFAULT NULL,
+  `datebegin` date DEFAULT NULL,
   `datefine` date NOT NULL,
   `category` varchar(20) NOT NULL,
   `description` int(11) NOT NULL,
-  `price` float NOT NULL
+  `price` float NOT NULL,
+   FOREIGN KEY (company) REFERENCES company(name),
+   ON DELETE NO ACTION ON UPDATE NO ACTION  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
