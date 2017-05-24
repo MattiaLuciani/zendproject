@@ -31,8 +31,6 @@ class PublicController extends Zend_Controller_Action
         $this->render($page);
     }
 
-
-
     public function couponAction()
     {
 			$coupon = new Application_Model_DbTable_Coupon();
@@ -90,6 +88,11 @@ $this->view->coupon = $coupon->fetchAll();
     {
       $company = new Application_Model_DbTable_Company();
 $this->view->company = $company->fetchAll();
+    }
+
+    public function registraAction()
+    {
+        // action body
     }
 
 

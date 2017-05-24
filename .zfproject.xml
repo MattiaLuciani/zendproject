@@ -19,6 +19,7 @@
           <actionMethod actionName="coupon"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="company"/>
+          <actionMethod actionName="registra"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -34,6 +35,7 @@
           <dbTableFile dbTableName="Azienda"/>
           <dbTableFile dbTableName="Coupon"/>
           <dbTableFile dbTableName="Company"/>
+          <dbTableFile dbTableName="User"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -66,6 +68,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Public">
             <viewScriptFile forActionName="company"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Public">
+            <viewScriptFile forActionName="registra"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
