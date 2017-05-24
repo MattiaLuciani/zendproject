@@ -1,34 +1,15 @@
-<?php
-$this->title = "Le Aziende";
-$this->headTitle($this->title);
-?>
-<table>
-<tr>
-<th>Nome</th>
-<th>Azienda</th>
-<th>DataInizio</th>
-<th>DataFine</th>
-<th>Quantità</th>
-<th>Tipologia</th>
-<th>Sconto</th>
-<th>PrezzoIniziale</th>
-<th>PrezzoFinale</th>
 
-<th>&nbsp;</th>
-</tr>
 <?php foreach($this->coupon as $coupon) : ?>
-<tr>
-<td><?php echo $this->escape($coupon->Nome);?></td>
-<td><?php echo $this->escape($coupon->Azienda);?></td>
-<td><?php echo $this->escape($coupon->DataInizio);?></td>
-<td><?php echo $this->escape($coupon->DataFine);?></td>
-<td><?php echo $this->escape($coupon->Quantità);?></td>
-<td><?php echo $this->escape($coupon->Tipologia);?></td>
-<td><?php echo $this->escape($coupon->Sconto);?></td>
-<td><?php echo $this->escape($coupon->PrezzoIniziale);?></td>
-<td><?php echo $this->escape($coupon->PrezzoFinale);?></td>
 
-</td>
-</tr>
+<?php echo $this->escape($coupon->Nome);?>
+<?php echo $this->escape($coupon->Azienda);?>
+<?php echo $this->escape($coupon->DataInizio);?>
+<?php echo $this->escape($coupon->DataFine);?>
+<?php echo $this->escape($coupon->Quantità);?>
+<?php echo $this->escape($coupon->Tipologia);?>
+<?php echo $this->escape($coupon->Sconto);?>
+<?php echo $this->escape($coupon->PrezzoIniziale);?>
+<?php echo $this->escape($coupon->PrezzoFinale);?>
+
 <?php endforeach; ?>
-</table>
+
