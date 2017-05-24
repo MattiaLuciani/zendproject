@@ -13,7 +13,7 @@ class PublicController extends Zend_Controller_Action
     public function indexAction()
     {
 		// action body
-        
+
     }
 
     public function faqAction()
@@ -34,14 +34,16 @@ class PublicController extends Zend_Controller_Action
 
     public function aziendeAction()
     {
-			$aziende = new Application_Model_DbTable_Azienda();
-$this->view->aziende = $aziende->fetchAll();
+        $this->view->name="aziende";
+    /*        $aziende = new Application_Model_DbTable_Azienda();
+$this->view->aziende = $aziende->fetchAll();*/
     }
 
     public function couponAction()
     {
-			$coupon = new Application_Model_DbTable_Coupon();
-$this->view->coupon = $coupon->fetchAll();
+        $this->view->name="coupon";
+			/*$coupon = new Application_Model_DbTable_Coupon();
+$this->view->coupon = $coupon->fetchAll();*/
     }
 
 

@@ -1,34 +1,54 @@
-<?php
-$this->title = "Le Aziende";
-$this->headTitle($this->title);
-?>
-<table>
-<tr>
-<th>Nome</th>
-<th>Azienda</th>
-<th>DataInizio</th>
-<th>DataFine</th>
-<th>Quantità</th>
-<th>Tipologia</th>
-<th>Sconto</th>
-<th>PrezzoIniziale</th>
-<th>PrezzoFinale</th>
+<div class="content">
+	<div class="content-wrapper">
+				
+		<div class="content-element">
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Acquistare</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Acquistare</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Acquistare</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Acquistare</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ <?= $this->headScript()->appendFile($this->baseUrl() . '/js/item_anim.js'); ?>
 
-<th>&nbsp;</th>
-</tr>
-<?php foreach($this->coupon as $coupon) : ?>
-<tr>
-<td><?php echo $this->escape($coupon->Nome);?></td>
-<td><?php echo $this->escape($coupon->Azienda);?></td>
-<td><?php echo $this->escape($coupon->DataInizio);?></td>
-<td><?php echo $this->escape($coupon->DataFine);?></td>
-<td><?php echo $this->escape($coupon->Quantità);?></td>
-<td><?php echo $this->escape($coupon->Tipologia);?></td>
-<td><?php echo $this->escape($coupon->Sconto);?></td>
-<td><?php echo $this->escape($coupon->PrezzoIniziale);?></td>
-<td><?php echo $this->escape($coupon->PrezzoFinale);?></td>
 
-</td>
-</tr>
-<?php endforeach; ?>
-</table>

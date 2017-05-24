@@ -1,25 +1,52 @@
-<?php
-$this->title = "Le Aziende";
-$this->headTitle($this->title);
-?>
-
-<table>
-<tr>
-<th>Nome</th>
-<th>Emal</th>
-<th>SitoWeb</th>
-<th>Descrizione</th>
-<th>&nbsp;</th>
-</tr>
-<?php foreach($this->aziende as $azienda) : ?>
-<tr>
-<td><?php echo $this->escape($azienda->Nome);?></td>
-<td><?php echo $this->escape($azienda->Emal);?></td>
-<td><?php echo $this->escape($azienda->SitoWeb);?></td>
-<td><?php echo $this->escape($azienda->Descrizione);?></td>
-
-
-</td>
-</tr>
-<?php endforeach; ?>
-</table>
+<div class="content">
+	<div class="content-wrapper">
+				
+		<div class="content-element">
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Info</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Info</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Info</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="item">
+				<div class="inner">
+					<div class="wrapper">
+						<img src="http://placehold.it/400x300">
+						<div class="coupon-info">
+							<span style="">Descrizione</span>
+							<a href="" class="coupon-link" style="">Info</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ <?= $this->headScript()->appendFile($this->baseUrl() . '/js/item_anim.js'); ?>

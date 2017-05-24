@@ -1,5 +1,6 @@
 html{
 	height: 100%;
+	
 }
 body{
 	/*background-image: url(https://www.creationsiteinternet.be/file/2014/04/pink-bg.jpg);*/
@@ -184,7 +185,6 @@ nav:after{
  	background-color:#ed4e6e;
  	color:white;
  	padding:10px;
- 	position:relative;
- 	left:216px;
- 	top:50px;
+ 	float: right;
+ 	top:0px;
  }

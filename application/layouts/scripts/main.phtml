@@ -7,27 +7,30 @@
     <?= $this->headLink()->appendStylesheet($this->baseUrl().'/css/font-awesome-4.7.0/css/font-awesome.min.css') ?>
     <?= $this->headScript()->appendFile($this->baseUrl() . '/js/jquery-3.2.1.min.js'); ?>
     <?= $this->headTitle(); ?>
+    <?php
+
+    	$style=""; 
+    	if($this->name=='coupon')
+    	$style = "coupon_page.css";
+    	  else if($this->name=='aziende')
+    	$style = "aziende_page.css";
+
+    	  	echo $this->headLink()->appendStylesheet($this->baseUrl() .'/css/' . $style);
+    	  	?>
+
 
 </head>
 <body>
 
-
-	
-	<!-- end #header -->
 	<nav>
 		<?= $this->render('_topnavmain.phtml') ?>
 	</nav>
-	<!-- end #menu -->
-	  	  <?php echo $this->layout()->content; ?>
-	  	  
-    <?= $this->headScript()->appendFile($this->baseUrl() . '/js/search_script.js'); ?>
 
-	<!-- end #content -->
-	<div id="footer">
-		<br>
-		<p>Project</p>
-	</div>
-	<!-- end #footer -->
+	<?php echo $this->layout()->content; ?>
+
+
+
+
 </div>
 </body>
 </html>
