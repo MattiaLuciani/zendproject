@@ -95,5 +95,13 @@ $this->view->company = $company->fetchAll();
         // action body
     }
 
+    public function promotionAction()
+    {
+       $promotion = new Application_Model_DbTable_Promotion();
+$this->view->promotion = $promotion->fetchAll();
+    }
+
 
 }
+
+

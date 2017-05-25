@@ -5,10 +5,15 @@ $this->headTitle($this->title);
 
 <table>
 <tr>
-<th>Nome</th>
-<th>Emal</th>
-<th>SitoWeb</th>
-<th>Descrizione</th>
+<th>Name</th>
+<th>Email</th>
+<th>Website</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Category</th>
+<th>Description</th>
+<th>Img</th>
+
 <th>&nbsp;</th>
 </tr>
 <?php foreach($this->company as $company) : ?>
@@ -16,7 +21,12 @@ $this->headTitle($this->title);
 <td><?php echo $this->escape($company->name);?></td>
 <td><?php echo $this->escape($company->email);?></td>
 <td><?php echo $this->escape($company->website);?></td>
+<td><?php echo $this->escape($company->phone);?></td>
+<td><?php echo $this->escape($company->address);?></td>
+<td><?php echo $this->escape($company->category);?></td>
 <td><?php echo $this->escape($company->description);?></td>
+<td><?php echo $this->escape($company->img);?></td>
+
 
 
 </td>
