@@ -92,8 +92,27 @@ $this->view->company = $company->fetchAll();
 
     public function registraAction()
     {
-        // action body
+      $form =new Application_Form_Registra();
+     $form->submit->setLabel("Add");
+      $this->view->form =$form;
+
+      if($this->getRequest()->isPost()){
+        $formdata=$this->getRequest()->getPost();
+        if($form->isValid($formdata)){
+          $username=$form->getValue("username");
+          $password=$form->getValue("password");
+          $level=1;
+          $name=$form->getValue("name");
+          $surname=$form->getValue("surname");
+          $email=$form->getValue("email");
+          $registraDati=new Application_Model_DbTable_User;
+          $registraDati->addUser($username,$password,$level,$name,$surname,$email);
+          $this->_helper->redirector('index');
+        }
+        else {
+          $form->populate($formdata);
+        }
+        }
+      }
+
     }
-
-
-}

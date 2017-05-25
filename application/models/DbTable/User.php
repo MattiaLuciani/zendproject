@@ -38,7 +38,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
       'surname' =>$surname,
       'email' => $email,);
       $this->insert($data);
-      );
+
     $this->update($data);
     }
 

@@ -51,9 +51,7 @@ CREATE TABLE `company` (
   `address` varchar(50) NOT NULL,
   `category` varchar(20) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `img` varchar(256) DEFAULT NULL,
-   FOREIGN KEY (category) REFERENCES category(name)
-
+  `img` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -66,9 +64,7 @@ CREATE TABLE `coupon` (
   `couponId` int(11) NOT NULL,
   `promoId` int(11) NOT NULL,
   `username` int(11) NOT NULL,
-  `used` tinyint(1) NOT NULL DEFAULT '0',
-  FOREIGN KEY (promoId) REFERENCES promotion(promoId),
-  FOREIGN KEY (username) REFERENCES user(username)  
+  `used` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,15 +74,13 @@ CREATE TABLE `coupon` (
 --
 
 CREATE TABLE `promotion` (
-  `promoId` int(11) NOT NULL,
+  `promoid` int(11) NOT NULL,
   `company` varchar(30) NOT NULL,
-  `datebegin` date DEFAULT NULL,
+  `datebegun` date DEFAULT NULL,
   `datefine` date NOT NULL,
   `category` varchar(20) NOT NULL,
   `description` int(11) NOT NULL,
-  `price` float NOT NULL,
-   FOREIGN KEY (company) REFERENCES company(name),
-   ON DELETE NO ACTION ON UPDATE NO ACTION  
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
