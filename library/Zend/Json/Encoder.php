@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Encoder.php 24152 2011-06-24 15:23:19Z adamlundrigan $
  */
 
 /**
@@ -24,7 +24,7 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json_Encoder
@@ -74,6 +74,7 @@ class Zend_Json_Encoder
     public static function encode($value, $cycleCheck = false, $options = array())
     {
         $encoder = new self(($cycleCheck) ? true : false, $options);
+
         return $encoder->_encodeValue($value);
     }
 
@@ -134,26 +135,22 @@ class Zend_Json_Encoder
         }
 
         $props = '';
-        if (method_exists($value, 'toJson')) {
-            $props =',' . preg_replace("/^\{(.*)\}$/","\\1",$value->toJson());
-        } else {
-            if ($value instanceof IteratorAggregate) {
-                $propCollection = $value->getIterator();
-            } elseif ($value instanceof Iterator) {
-                $propCollection = $value;
-            } else {
-                $propCollection = get_object_vars($value);
-            }
 
-            foreach ($propCollection as $name => $propValue) {
-                if (isset($propValue)) {
-                    $props .= ','
-                            . $this->_encodeString($name)
-                            . ':'
-                            . $this->_encodeValue($propValue);
-                }
+        if ($value instanceof Iterator) {
+            $propCollection = $value;
+        } else {
+            $propCollection = get_object_vars($value);
+        }
+
+        foreach ($propCollection as $name => $propValue) {
+            if (isset($propValue)) {
+                $props .= ','
+                        . $this->_encodeString($name)
+                        . ':'
+                        . $this->_encodeValue($propValue);
             }
         }
+
         $className = get_class($value);
         return '{"__className":' . $this->_encodeString($className)
                 . $props . '}';

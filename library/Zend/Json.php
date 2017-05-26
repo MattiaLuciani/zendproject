@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Json.php 24421 2011-08-28 15:41:18Z adamlundrigan $
  */
 
 /**
@@ -26,8 +26,6 @@
  */
 require_once 'Zend/Json/Expr.php';
 
-/** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
 
 /**
  * Class for encoding to and decoding from JSON.
@@ -35,7 +33,7 @@ require_once 'Zend/Xml/Security.php';
  * @category   Zend
  * @package    Zend_Json
  * @uses       Zend_Json_Expr
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json
@@ -79,9 +77,7 @@ class Zend_Json
 
             // php < 5.3
             if (!function_exists('json_last_error')) {
-                if (strtolower($encodedValue) === 'null') {
-                    return null;
-                } elseif ($decode === null) {
+                if ($decode === $encodedValue) {
                     require_once 'Zend/Json/Exception.php';
                     throw new Zend_Json_Exception('Decoding failed');
                 }
@@ -129,12 +125,8 @@ class Zend_Json
      */
     public static function encode($valueToEncode, $cycleCheck = false, $options = array())
     {
-        if (is_object($valueToEncode)) {
-            if (method_exists($valueToEncode, 'toJson')) {
-                return $valueToEncode->toJson();
-            } elseif (method_exists($valueToEncode, 'toArray')) {
-                return self::encode($valueToEncode->toArray(), $cycleCheck, $options);
-            }
+        if (is_object($valueToEncode) && method_exists($valueToEncode, 'toJson')) {
+            return $valueToEncode->toJson();
         }
 
         // Pre-encoding look for Zend_Json_Expr objects and replacing by tmp ids
@@ -345,7 +337,7 @@ class Zend_Json
     public static function fromXml($xmlStringContents, $ignoreXmlAttributes=true)
     {
         // Load the XML formatted string into a Simple XML Element object.
-        $simpleXmlElementObject = Zend_Xml_Security::scan($xmlStringContents);
+        $simpleXmlElementObject = simplexml_load_string($xmlStringContents);
 
         // If it is not a valid XML content, throw an exception.
         if ($simpleXmlElementObject == null) {

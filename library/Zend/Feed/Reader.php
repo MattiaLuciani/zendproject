@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Reader.php 23975 2011-05-03 16:43:46Z ralph $
  */
 
 /**
@@ -39,16 +39,10 @@ require_once 'Zend/Feed/Reader/Feed/Atom.php';
  */
 require_once 'Zend/Feed/Reader/FeedSet.php';
 
-/** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
-
-/** @see Zend_Xml_Exception */
-require_once 'Zend/Xml/Exception.php';
-
 /**
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader
@@ -246,7 +240,7 @@ class Zend_Feed_Reader
                     $etag = $cache->load($cacheId.'_etag');
                 }
                 if ($lastModified === null) {
-                    $lastModified = $cache->load($cacheId.'_lastmodified');
+                    $lastModified = $cache->load($cacheId.'_lastmodified');;
                 }
                 if ($etag) {
                     $client->setHeaders('If-None-Match', $etag);
@@ -332,23 +326,20 @@ class Zend_Feed_Reader
     }
 
     /**
-     * Import a feed from a string
+     * Import a feed froma string
      *
      * @param  string $string
      * @return Zend_Feed_Reader_FeedInterface
      */
     public static function importString($string)
     {
+        
+        $libxml_errflag = libxml_use_internal_errors(true);
         $dom = new DOMDocument;
-        try {
-            $dom = Zend_Xml_Security::scan($string, $dom);        
-        } catch (Zend_Xml_Exception $e) {    
-            require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception(
-                $e->getMessage()
-            );
-        }
-        if (!$dom) {
+        $status = $dom->loadXML($string);
+        libxml_use_internal_errors($libxml_errflag);
+
+        if (!$status) {
             // Build error message
             $error = libxml_get_last_error();
             if ($error && $error->message) {
@@ -416,10 +407,8 @@ class Zend_Feed_Reader
         }
         $responseHtml = $response->getBody();
         $libxml_errflag = libxml_use_internal_errors(true);
-        $oldValue = libxml_disable_entity_loader(true);
         $dom = new DOMDocument;
         $status = $dom->loadHTML($responseHtml);
-        libxml_disable_entity_loader($oldValue);
         libxml_use_internal_errors($libxml_errflag);
         if (!$status) {
             // Build error message
@@ -443,9 +432,7 @@ class Zend_Feed_Reader
      * Detect the feed type of the provided feed
      *
      * @param  Zend_Feed_Abstract|DOMDocument|string $feed
-     * @param  bool                                  $specOnly
      * @return string
-     * @throws Zend_Feed_Exception
      */
     public static function detectType($feed, $specOnly = false)
     {
@@ -455,19 +442,10 @@ class Zend_Feed_Reader
             $dom = $feed;
         } elseif(is_string($feed) && !empty($feed)) {
             @ini_set('track_errors', 1);
-            //$oldValue = libxml_disable_entity_loader(true);
             $dom = new DOMDocument;
-            try {
-                $dom = Zend_Xml_Security::scan($feed, $dom);
-            } catch (Zend_Xml_Exception $e) {
-                require_once 'Zend/Feed/Exception.php';
-                throw new Zend_Feed_Exception(
-                    $e->getMessage()
-                );
-            }
-            //libxml_disable_entity_loader($oldValue);
+            $status = @$dom->loadXML($feed);
             @ini_restore('track_errors');
-            if (!$dom) {
+            if (!$status) {
                 if (!isset($php_errormsg)) {
                     if (function_exists('xdebug_is_enabled')) {
                         $php_errormsg = '(error message not available, when XDebug is running)';

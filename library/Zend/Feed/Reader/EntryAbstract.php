@@ -14,15 +14,15 @@
  *
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: EntryAbstract.php 23953 2011-05-03 05:47:39Z ralph $
  */
 
 /**
  * @category   Zend
  * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Feed_Reader_EntryAbstract
@@ -72,9 +72,9 @@ abstract class Zend_Feed_Reader_EntryAbstract
     /**
      * Constructor
      *
-     * @param  DOMElement  $entry
-     * @param  int         $entryKey
-     * @param  string|null $type
+     * @param  DOMElement $entry
+     * @param  int $entryKey
+     * @param  string $type
      * @return void
      */
     public function __construct(DOMElement $entry, $entryKey, $type = null)
@@ -85,9 +85,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
         if ($type !== null) {
             $this->_data['type'] = $type;
         } else {
-            $this->_data['type'] = Zend_Feed_Reader::detectType(
-                $this->_domDocument
-            );
+            $this->_data['type'] = Zend_Feed_Reader::detectType($feed);
         }
         $this->_loadExtensions();
     }
@@ -214,10 +212,8 @@ abstract class Zend_Feed_Reader_EntryAbstract
             }
         }
         require_once 'Zend/Feed/Exception.php';
-        throw new Zend_Feed_Exception(
-            'Method: ' . $method
-            . 'does not exist and could not be located on a registered Extension'
-        );
+        throw new Zend_Feed_Exception('Method: ' . $method
+            . 'does not exist and could not be located on a registered Extension');
     }
 
     /**
