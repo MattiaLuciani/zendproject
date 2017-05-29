@@ -63,11 +63,20 @@
 		href="
                 <?= $this->url(array(
                         'controller' => 'public',
-                        'action'     => 'registra'),
+                        'action'     => 'signup'),
                         'default',true
                     );
                  ?>"
 		title="Registrati">regstrati</a></li>
+    <li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'edit'),
+                        'default',true
+                    );
+                 ?>"
+		title="Edit">edit</a></li>
 
     <li><a
 		href="

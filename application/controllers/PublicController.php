@@ -2,8 +2,10 @@
 
 class PublicController extends Zend_Controller_Action
 {
-  protected $_authService;
-  protected $_form;
+
+    protected $_authService = null;
+
+    protected $_form = null;
 
     public function init()
     {
@@ -41,7 +43,7 @@ class PublicController extends Zend_Controller_Action
     }
 
     public function companyAction()
-    {   
+    {
         $this->view->page_name = "company";
         $company = new Application_Model_DbTable_Company();
         $this->view->company = $company->fetchAll();
@@ -93,6 +95,36 @@ class PublicController extends Zend_Controller_Action
 		));
 		return $this->_form;
     }
+
+
+
+    public function signupAction()
+    {
+
+              $form = new Application_Form_Registra();
+              $form->submit->setLabel('aggiungi');
+              $this->view->form=$form;
+
+              if ($this->getRequest()->isPost()) {
+                $formData = $this->getRequest()->getPost();
+                if ($form->isValid($formData)) {
+
+                  $username= $form->getValue('username');
+                  $password= $form->getValue('password');
+                  $level=1; //$form->getValue('level');
+                  $name=$form->getValue('name');
+                  $surname=$form->getValue('surname');
+                  $email=$form->getValue('email');
+                  $user = new Application_Model_DbTable_User();
+
+                    $user->addUser($username,$password,$level,$name,$surname,$email);
+                    $this->_helper->redirector('index');
+                  
+                } else {
+                  $form->populate($formData);
+                }
+              }
+             }
 
 
 }

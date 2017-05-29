@@ -47,9 +47,11 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     {
     $this->delete($username);
     }
-    public function getUserByName($info)
+
+
+    public function getUserByName($usrName)
     {
-      return $this->getResource('User')->getUserByName($info);
+        return $this->fetchRow($this->select()->where('username = ?', $usrName));
     }
 
 }
