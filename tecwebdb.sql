@@ -76,7 +76,7 @@ CREATE TABLE `coupon` (
 CREATE TABLE `promotion` (
   `promoid` int(11) NOT NULL,
   `company` varchar(30) NOT NULL,
-  `datebegun` date DEFAULT NULL,
+  `datebegin` date DEFAULT NULL,
   `datefine` date NOT NULL,
   `category` varchar(20) NOT NULL,
   `description` int(11) NOT NULL,
@@ -138,7 +138,7 @@ ALTER TABLE `promotion`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
-
+  
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --

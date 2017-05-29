@@ -31,12 +31,18 @@ class PublicController extends Zend_Controller_Action
         $this->render($page);
     }
 
-
-
-    public function couponAction()
+    public function promotionAction()
     {
-			$coupon = new Application_Model_DbTable_Coupon();
-$this->view->coupon = $coupon->fetchAll();
+        $this->view->page_name = "promotion";
+    	$promotion = new Application_Model_DbTable_Promotion();
+        $this->view->promotion = $promotion->fetchAll();
+    }
+
+    public function companyAction()
+    {   
+        $this->view->page_name = "company";
+        $company = new Application_Model_DbTable_Company();
+        $this->view->company = $company->fetchAll();
     }
 
     public function loginAction()
@@ -84,12 +90,6 @@ $this->view->coupon = $coupon->fetchAll();
 			'default'
 		));
 		return $this->_form;
-    }
-
-    public function companyAction()
-    {
-      $company = new Application_Model_DbTable_Company();
-$this->view->company = $company->fetchAll();
     }
 
 

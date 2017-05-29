@@ -22,7 +22,7 @@ class Application_Model_DbTable_Company extends Zend_Db_Table_Abstract
       {
       $data = array(
       'name' => $name,
-      'email' => $email,
+      'email' => $email,  
       'website' => $website,
       'phone'=> $phone,
       'address' => $address,

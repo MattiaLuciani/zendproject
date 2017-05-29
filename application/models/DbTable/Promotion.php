@@ -1,11 +1,11 @@
 <?php
 
-class Application_Model_DbTable_Coupon extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
 {
 
-    //protected $_name = 'coupon';
+    protected $_name = 'promotion';
         
-        public function getCoupon($id)
+        public function getPromotion($id)
         {
           $id = (int)$id;
           $row = $this->fetchRow('id = ' . $id);
@@ -14,12 +14,12 @@ class Application_Model_DbTable_Coupon extends Zend_Db_Table_Abstract
           }
           return $row->toArray();
         }
-        public function getCoupon($category,$name){
+        /*public function getCoupon($category,$name){
 
-        }
+        }*/
 
 
-        public function addCoupon($Nome,$Azienda,$DataInizio,$DataFine,$Quantità,$Tipologia,$Sconto,$PrezzoIniziale,$PrezzoFinale)
+        public function addPromotion($Nome,$Azienda,$DataInizio,$DataFine,$Quantità,$Tipologia,$Sconto,$PrezzoIniziale,$PrezzoFinale)
         {
         $data = array(
           'Nome' => $Nome,
@@ -36,7 +36,7 @@ class Application_Model_DbTable_Coupon extends Zend_Db_Table_Abstract
         }
 
 
-        public function updateCoupon($Nome,$Azienda,$DataInizio,$DataFine,$Quantità,$Tipologia,$Sconto,$PrezzoIniziale,$PrezzoFinale){
+        public function updatePromotion($Nome,$Azienda,$DataInizio,$DataFine,$Quantità,$Tipologia,$Sconto,$PrezzoIniziale,$PrezzoFinale){
         $data = array(
           'Nome' => $Nome,
           'Azienda' => $Azienda,
@@ -52,7 +52,7 @@ class Application_Model_DbTable_Coupon extends Zend_Db_Table_Abstract
         }
 
 
-        public function deleteCoupon($id){
+        public function deletePromotion($id){
 
           $this->delete('id =' . (int)$id);
 
