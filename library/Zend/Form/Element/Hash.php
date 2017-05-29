@@ -15,15 +15,12 @@
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_Form_Element_Xhtml */
 require_once 'Zend/Form/Element/Xhtml.php';
-
-/** @see Zend_Crypt_Math */
-require_once 'Zend/Crypt/Math.php';
 
 /**
  * CSRF form protection
@@ -31,9 +28,9 @@ require_once 'Zend/Crypt/Math.php';
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Hash.php 23775 2011-03-01 17:25:24Z ralph $
  */
 class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 {
@@ -252,7 +249,10 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     protected function _generateHash()
     {
         $this->_hash = md5(
-            Zend_Crypt_Math::randBytes(32)
+            mt_rand(1,1000000)
+            .  $this->getSalt()
+            .  $this->getName()
+            .  mt_rand(1,1000000)
         );
         $this->setValue($this->_hash);
     }

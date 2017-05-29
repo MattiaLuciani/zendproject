@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id$
+ * @version   $Id: FilesSize.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
@@ -29,7 +29,7 @@ require_once 'Zend/Validate/File/Size.php';
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
@@ -64,7 +64,7 @@ class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
      * It also accepts an array with the keys 'min' and 'max'
      *
      * @param  integer|array|Zend_Config $options Options for this validator
-     * @throws Zend_Validate_Exception
+     * @return void
      */
     public function __construct($options)
     {

@@ -15,7 +15,7 @@
  * @category   Zend
  * @package    Zend_Service_Amazon
  * @subpackage SimpleDb
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -53,7 +53,7 @@ require_once 'Zend/Crypt/Hmac.php';
  * @category   Zend
  * @package    Zend_Service_Amazon
  * @subpackage SimpleDb
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
@@ -89,8 +89,10 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
     /**
      * Create Amazon SimpleDB client.
      *
-     * @param string $accessKey       Override the default Access Key
-     * @param string $secretKey       Override the default Secret Key
+     * @param  string $access_key       Override the default Access Key
+     * @param  string $secret_key       Override the default Secret Key
+     * @param  string $region           Sets the AWS Region
+     * @return void
      */
     public function __construct($accessKey, $secretKey)
     {
@@ -102,8 +104,6 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      * Set SimpleDB endpoint to use
      *
      * @param string|Zend_Uri_Http $endpoint
-     * @throws Zend_Service_Amazon_SimpleDb_Exception
-     * @throws Zend_Uri_Exception
      * @return Zend_Service_Amazon_SimpleDb
      */
     public function setEndpoint($endpoint)
@@ -132,11 +132,8 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
     /**
      * Get attributes API method
      *
-     * @param string      $domainName Domain name within database
-     * @param string      $itemName
-     * @param string|null $attributeName
-     * @throws Zend_Service_Amazon_SimpleDb_Exception
-     * @return array
+     * @param string $domainName Domain name within database
+     * @param string
      */
     public function getAttributes(
         $domainName, $itemName, $attributeName = null
@@ -183,7 +180,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      *
      * @param  string $domainName
      * @param  string $itemName
-     * @param  array|Traversable $attributes
+     * @param  array|Traverable $attributes
      * @param  array $replace
      * @return void
      */
@@ -310,6 +307,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
 
         $nextTokenNode = $response->getSimpleXMLDocument()->ListDomainsResult->NextToken;
         $nextToken     = (string)$nextTokenNode;
+        $nextToken     = (trim($nextToken) === '') ? null : $nextToken;
 
         return new Zend_Service_Amazon_SimpleDb_Page($data, $nextToken);
     }
@@ -345,8 +343,8 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      * @param string $domainName Valid domain name of the domain to create
      * @return boolean True if successful, false if not
      */
-    public function createDomain($domainName)
-    {
+	public function createDomain($domainName)
+	{
         $params               = array();
         $params['Action']     = 'CreateDomain';
         $params['DomainName'] = $domainName;
@@ -360,11 +358,11 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      * @param string $domainName Valid domain name of the domain to delete
      * @return boolean True if successful, false if not
      */
-    public function deleteDomain($domainName)
-    {
-        $params               = array();
-        $params['Action']     = 'DeleteDomain';
-        $params['DomainName'] = $domainName;
+	public function deleteDomain($domainName)
+	{
+	    $params               = array();
+	    $params['Action']     = 'DeleteDomain';
+	    $params['DomainName'] = $domainName;
         $response             = $this->_sendRequest($params);
         return $response->getHttpResponse()->isSuccessful();
     }
@@ -376,8 +374,8 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      * @param  null|string $nextToken
      * @return Zend_Service_Amazon_SimpleDb_Page
      */
-    public function select($selectExpression, $nextToken = null)
-    {
+	public function select($selectExpression, $nextToken = null)
+	{
         $params                     = array();
         $params['Action']           = 'Select';
         $params['SelectExpression'] = $selectExpression;
@@ -409,29 +407,27 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
         return new Zend_Service_Amazon_SimpleDb_Page($attributes, $nextToken);
     }
 
-    /**
-     * Quote SDB value
-     *
-     * Wraps it in ''
-     *
-     * @param string $value
-     * @return string
-     */
+	/**
+	 * Quote SDB value
+	 *
+	 * Wraps it in ''
+	 *
+	 * @param string $value
+	 * @return string
+	 */
     public function quote($value)
     {
         // wrap in single quotes and convert each ' inside to ''
         return "'" . str_replace("'", "''", $value) . "'";
     }
 
-    /**
-     * Quote SDB column or table name
-     *
-     * Wraps it in ``
-     *
-     * @param  string $name
-     * @throws Zend_Service_Amazon_SimpleDb_Exception
-     * @return string
-     */
+	/**
+	 * Quote SDB column or table name
+	 *
+	 * Wraps it in ``
+	 * @param string $name
+	 * @return string
+	 */
     public function quoteName($name)
     {
         if (preg_match('/^[a-z_$][a-z0-9_$-]*$/i', $name) == false) {
@@ -529,20 +525,22 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      *    values before constructing this string. Do not use any separator
      *    characters when appending strings.
      *
-     * @param array $parameters the parameters for which to get the signature.
+     * @param array  $parameters the parameters for which to get the signature.
+     * @param string $secretKey  the secret key to use to sign the parameters.
+     *
      * @return string the signed data.
      */
-    protected function _signParameters(array $parameters)
+    protected function _signParameters(array $paramaters)
     {
         $data  = "POST\n";
         $data .= $this->getEndpoint()->getHost() . "\n";
         $data .= "/\n";
 
-        uksort($parameters, 'strcmp');
-        unset($parameters['Signature']);
+        uksort($paramaters, 'strcmp');
+        unset($paramaters['Signature']);
 
         $arrData = array();
-        foreach ($parameters as $key => $value) {
+        foreach ($paramaters as $key => $value) {
             $value = urlencode($value);
             $value = str_replace("%7E", "~", $value);
             $value = str_replace("+", "%20", $value);
@@ -562,6 +560,9 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
      *
      * @param Zend_Service_Amazon_SimpleDb_Response $response the response object to
      *                                                   check.
+     *
+     * @return void
+     *
      * @throws Zend_Service_Amazon_SimpleDb_Exception if one or more errors are
      *         returned from Amazon.
      */

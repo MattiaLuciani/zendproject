@@ -2,12 +2,14 @@
 
 class PublicController extends Zend_Controller_Action
 {
+  protected $_authService;
+  protected $_form;
 
     public function init()
     {
        $this->_helper->layout->setLayout('main');
-       //$this->_logger = Zend_Registry::get('log');
-	   /* Initialize action controller here */
+       $this->_authService = new Application_Service_Auth();
+       $this->view->loginForm = $this->getLoginForm();
     }
 
     public function indexAction()

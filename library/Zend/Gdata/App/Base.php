@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage App
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Base.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
@@ -26,16 +26,13 @@
  */
 require_once 'Zend/Gdata/App/Util.php';
 
-/** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
-
 /**
  * Abstract class for all XML elements
  *
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage App
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Gdata_App_Base
@@ -304,9 +301,9 @@ abstract class Zend_Gdata_App_Base
             // Load the feed as an XML DOMDocument object
             @ini_set('track_errors', 1);
             $doc = new DOMDocument();
-            $doc = @Zend_Xml_Security::scan($xml, $doc);
+            $success = @$doc->loadXML($xml);
             @ini_restore('track_errors');
-            if (!$doc) {
+            if (!$success) {
                 require_once 'Zend/Gdata/App/Exception.php';
                 throw new Zend_Gdata_App_Exception("DOMDocument cannot parse XML: $php_errormsg");
             }

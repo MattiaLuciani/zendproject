@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Wildfire
  * @subpackage Plugin
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: FirePhp.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /** Zend_Controller_Request_Abstract */
@@ -41,7 +41,7 @@ require_once 'Zend/Wildfire/Plugin/Interface.php';
  * @category   Zend
  * @package    Zend_Wildfire
  * @subpackage Plugin
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
@@ -532,12 +532,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                 isset($trace[0]['file']) && substr($trace[0]['file'], -7, 7)=='Log.php' &&
                 isset($trace[1]['function']) && $trace[1]['function']=='__call') {
 
-                $spliceOffset = 2;
-                //Debug backtrace changed in PHP 7.0.0
-                if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
-                    $spliceOffset = 1;
-                }
-                $trace = array_splice($trace, $spliceOffset);
+                $trace = array_splice($trace, 2);
             }
         }
 

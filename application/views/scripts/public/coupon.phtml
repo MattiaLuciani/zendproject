@@ -1,0 +1,28 @@
+<?php
+$this->title = "promotion";
+$this->headTitle($this->title);
+?>
+<table>
+<tr>
+<th>Company</th>
+<th>Datebegin</th>
+<th>Datefine</th>
+<th>Category</th>
+<th>Description</th>
+<th>Price</th>
+
+<th>&nbsp;</th>
+</tr>
+<?php foreach($this->coupon as $coupon) : ?>
+<tr>
+<td><?php echo $this->escape($coupon->company);?></td>
+<td><?php echo $this->escape($coupon->datebegin);?></td>
+<td><?php echo $this->escape($coupon->datefine);?></td>
+<td><?php echo $this->escape($coupon->category);?></td>
+<td><?php echo $this->escape($coupon->description);?></td>
+<td><?php echo $this->escape($coupon->price);?></td>
+
+</td>
+</tr>
+<?php endforeach; ?>
+</table>

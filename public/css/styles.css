@@ -5,7 +5,7 @@ html{
 body{
 	/*background-image: url(https://www.creationsiteinternet.be/file/2014/04/pink-bg.jpg);*/
 	margin: 0px;
-	background-color: #0c0c0c;
+	background-color: gray;
 	height: 100%;
 	overflow: hidden;
 }
@@ -14,6 +14,15 @@ a{
 	color:#3c4859;
 	font-family: 'Montserrat', sans-serif;
 }
+
+p, th {
+color: white;
+}
+
+.content-container{
+color: white;
+}
+
 nav{
 	height: 7%;
 	display: flex;
