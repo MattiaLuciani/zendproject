@@ -9,4 +9,66 @@ body{
 .content .content-element .inner{
 	overflow: hidden;
 }
+.content .content-wrapper .content-element .item .item-popup{
+	background-color: #2c3f52;
+	position: absolute;
+	visibility: hidden;
+	width:0px;
+	height: 0px;
+}
+.content .content-wrapper .content-element .item .item-popup .links{
+	position: relative;
+	top:95px;
+	display: flex;
+	justify-content: space-around;
+}
+.content .content-wrapper .content-element .item .item-popup .links a{
+	padding: 3px;
+	padding-left: 113px;
+	padding-right: 113px;
+	color: white;
+}
+.content .content-wrapper .content-element .item .item-popup .links a:first-child{
+	background-color: #0facf3;
+}
+.content .content-wrapper .content-element .item .item-popup .links a:last-child{
+	background-color: #ed4e6e;
+}
+.content .content-wrapper .content-element .item .item-popup .date-wrapper{
+	position: relative;
+	top:20%;
+	display: flex;
+	justify-content: space-around;
+	height: 12%;
+	align-items: center;
+}
+
+.content .content-wrapper .content-element .item .item-popup .description{
+	/*background-color: green;*/
+	/*width: 400px;
+	height: 300px;*/
+	top:120px;
+	position: relative;
+	border:0px;
+	border-top: 1px;
+	border-color: black;
+	border-style: solid; 
+}
+.content .content-wrapper .content-element .item .item-popup .date-wrapper .date{
+	display: flex;
+	flex-direction: column;
+	width:50%;
+	height: 80%;
+
+}
+
+.content .content-wrapper .content-element .item .item-popup .date-wrapper .date span:first-child{
+	align-self: center;
+}
+
+.content .content-wrapper .content-element .item .item-popup .date-wrapper .date span:last-child{
+	align-self: center;
+	position: relative;
+	top:18%;
+}
 

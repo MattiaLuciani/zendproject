@@ -190,10 +190,12 @@ nav:after{
  	color:white;
 }
 .content .content-wrapper .content-element .item
- .inner .wrapper .coupon-info .coupon-link{
+ .inner .wrapper .coupon-info .coupon-button{
  	background-color:#ed4e6e;
  	color:white;
  	padding:10px;
  	float: right;
  	top:0px;
+ 	border-radius: 0px;
+ 	cursor: pointer;
  }

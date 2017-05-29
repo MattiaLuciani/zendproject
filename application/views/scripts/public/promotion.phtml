@@ -10,15 +10,37 @@
 							<img src="http://placehold.it/400x300">
 								<div class="coupon-info">
 									<span style="">
-									<?php echo $this->escape($promotion->company);?>
-									<?php echo $this->escape($promotion->datebegin);?>
-									<?php echo $this->escape($promotion->datefine);?>
-									<?php echo $this->escape($promotion->category);?>
-									<?php echo $this->escape($promotion->description);?>
 									<?php echo $this->escape($promotion->price);?>	
 									</span>
-									<a href="" class="coupon-link">Acquistare</a>		
-									
+									<button class="coupon-button">Acquistare</a>		
+								</div>
+						 		<div class="item-popup">
+						 			<i class="fa fa-close close-item-popup" style="color:black;position:relative;left:96%;top:5px;font-size:1.3rem"></i>
+									<span><?php echo $this->escape($promotion->company);?></span>
+
+									<div class="description">
+										<span><?php echo $this->escape($promotion->description);?></span>
+									</div>
+
+						 			<div class="date-wrapper">
+
+						 				<div class = "date">
+						 					<span>Data di Inizio</span>
+						 					<span><?php echo $this->escape($promotion->datebegin);?></span>	
+						 				</div>
+
+										<div class="date">
+											<span>Data della fine</span>
+											<span><?php echo $this->escape($promotion->datefine);?></span>						 			
+										</div>
+
+						 			</div>
+
+						 			<div class="links">
+										<a href="">Azienda</a>										
+										<a href="">Acquistare</a>
+									</div>
+
 								</div>
 						</div>
 					</div>
@@ -29,3 +51,4 @@
 		</div>
 	</div>
 </div>
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/modal.js'); ?>
