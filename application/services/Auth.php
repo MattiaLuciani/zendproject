@@ -7,7 +7,7 @@ class Application_Service_Auth
 
     public function __construct()
     {
-        //$this->_adminModel = new Application_Model_Admin();
+        $this->_adminModel = new Application_Model_DbTable_User();
     }
 
     public function authenticate($credentials)
@@ -19,7 +19,7 @@ class Application_Service_Auth
         if (!$result->isValid()) {
             return false;
         }
-        $user = $this->_adminModel->getUserByName($credentials['username']);
+        $user = $this->_adminModel->getUser($credentials['username']);
         $auth->getStorage()->write($user);
         return true;
     }
@@ -52,10 +52,10 @@ class Application_Service_Auth
 			Zend_Db_Table_Abstract::getDefaultAdapter(),
 			'user',
 			'username',
-			'passwd'
+			'password'
 		);
 		$authAdapter->setIdentity($values['username']);
-		$authAdapter->setCredential($values['passwd']);
+		$authAdapter->setCredential($values['password']);
         return $authAdapter;
     }
 }
