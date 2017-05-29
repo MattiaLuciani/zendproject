@@ -1,0 +1,33 @@
+<div class="content">
+	<div class="content-wrapper">
+		<div class="content-element">
+
+			<?php foreach($this->company as $company) : ?>
+
+				<div class="item">
+					<div class="inner">
+						<div class="wrapper">
+							<img src="http://placehold.it/400x300">
+								<div class="coupon-info">
+									<span style="">
+									<?php echo $this->escape($company->name);?>
+									<?php echo $this->escape($company->email);?>
+									<?php echo $this->escape($company->website);?>
+									<?php echo $this->escape($company->phone);?>
+									<?php echo $this->escape($company->address);?>
+									<?php echo $this->escape($company->category);?>
+									<?php echo $this->escape($company->description);?>	
+									</span>
+									<a href="" class="coupon-link">Info</a>		
+									
+								</div>
+						</div>
+					</div>
+				</div>
+
+			<?php endforeach; ?>
+
+		</div>
+	</div>
+</div>
+
