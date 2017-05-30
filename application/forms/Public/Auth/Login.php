@@ -3,11 +3,11 @@
 class Application_Form_Public_Auth_Login extends App_Form_Abstract
 {
 	public function init()
-    {               
+    {
         $this->setMethod('post');
         $this->setName('login');
         $this->setAction('');
-    	
+
         $this->addElement('text', 'username', array(
             'filters'    => array('StringTrim', 'StringToLower'),
             'validators' => array(
@@ -17,8 +17,8 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
             'label'      => 'Username',
             'decorators' => $this->elementDecorators,
             ));
-        
-        $this->addElement('password', 'passwd', array(
+
+        $this->addElement('password', 'password', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(3, 25))

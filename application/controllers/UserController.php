@@ -5,6 +5,7 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
+      $this->_authService = new Application_Service_Auth();
       $this->_helper->layout->setLayout('main');
     }
 
@@ -13,12 +14,12 @@ class UserController extends Zend_Controller_Action
         // action body
     }
 
-   public function editAction()
+    public function editAction()
     {
       $form = new Application_Form_Registra();
       $form->submit->setLabel('Salva');
       $this->view->form = $form;
-
+      $this->view->userx = $this->_authService->getIdentity()->username;
 
       if ($this->getRequest()->isPost()){
 
@@ -32,25 +33,28 @@ class UserController extends Zend_Controller_Action
               $surname=$form->getValue('surname');
               $email=$form->getValue('email');
               $user = new Application_Model_DbTable_User();
-              $albums->updateAlbum($username,$password,$level,$name,$surname,$email);
+              $user->updateUser($username,$password,$level,$name,$surname,$email);
               $this->_helper->redirector('index');
             } else {
             $form->populate($formData);
             }
       }
       else {
-      $username = $this->_getParam('username', null);
-      if ($username){
+      $userx= $this->_authService->getIdentity()->username;
+
           $users = new Application_Model_DbTable_User();
-          $form->populate($users->getUser($username));
-        }
+          $form->populate($users->getUserByName('mario'));
+
 
 
       }
     }
 
-
-
+    public function logoutAction()
+    {
+      $this->_authService->clear();
+  		return $this->_helper->redirector('index','public');
+    }
 
 
 }

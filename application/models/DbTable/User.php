@@ -7,10 +7,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     public function getUser($username)
     {
-    $id = $username;
-    $row = $this->fetchRow('username = ' . $id);
+    $row = $this->fetchRow('username = ' . $username);
     if (!$row) {
-    throw new Exception("Could not find row $id");
+    throw new Exception("Could not find row $username");
     }
     return $row->toArray();
     }
@@ -31,15 +30,13 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     public function updateUser($username,$password,$level,$name,$surname,$email){
       $data = array(
-      'username' => $username,
       'password' => $password,
       'level'=> $level,
       'name' => $name,
       'surname' =>$surname,
       'email' => $email,);
-      $this->insert($data);
 
-    $this->update($data);
+    $this->update($data, 'username ='. $username);
     }
 
 
@@ -51,7 +48,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     public function getUserByName($usrName)
     {
-        return $this->fetchRow($this->select()->where('username = ?', $usrName));
+      $row =$this->fetchRow($this->select()->where('username = ?', $usrName));
+        return $row->toArray();
     }
 
 }

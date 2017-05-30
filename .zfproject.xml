@@ -22,10 +22,12 @@
           <actionMethod actionName="registra"/>
           <actionMethod actionName="promotion"/>
           <actionMethod actionName="signup"/>
+          <actionMethod actionName="authenticate"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
           <actionMethod actionName="edit"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -91,6 +93,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Public">
+            <viewScriptFile forActionName="authenticate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
