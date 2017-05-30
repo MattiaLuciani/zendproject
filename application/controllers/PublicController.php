@@ -101,30 +101,35 @@ class PublicController extends Zend_Controller_Action
     public function signupAction()
     {
 
-              $form = new Application_Form_Registra();
-              $form->submit->setLabel('aggiungi');
-              $this->view->form=$form;
+      $form = new Application_Form_Registra();
 
-              if ($this->getRequest()->isPost()) {
-                $formData = $this->getRequest()->getPost();
-                if ($form->isValid($formData)) {
+      $form->submit->setLabel('aggiungi');
 
-                  $username= $form->getValue('username');
-                  $password= $form->getValue('password');
-                  $level=1; //$form->getValue('level');
-                  $name=$form->getValue('name');
-                  $surname=$form->getValue('surname');
-                  $email=$form->getValue('email');
-                  $user = new Application_Model_DbTable_User();
+      $this->view->form=$form;
 
-                    $user->addUser($username,$password,$level,$name,$surname,$email);
-                    $this->_helper->redirector('index');
-                  
-                } else {
-                  $form->populate($formData);
-                }
-              }
-             }
+      if ($this->getRequest()->isPost()){
+
+        $formData = $this->getRequest()->getPost();
+
+        if ($form->isValid($formData)) {
+
+          $username= $form->getValue('username');
+          $password= $form->getValue('password');
+          $level=1; //$form->getValue('level');
+          $name=$form->getValue('name');
+          $surname=$form->getValue('surname');
+          $email=$form->getValue('email');
+          $user = new Application_Model_DbTable_User();
+
+            $user->addUser($username,$password,$level,$name,$surname,$email);
+
+            $this->_helper->redirector('index');
+          
+        } else {
+          $form->populate($formData);
+            }
+        }
+    }
 
 
 }
