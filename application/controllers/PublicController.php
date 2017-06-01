@@ -8,11 +8,12 @@ class PublicController extends Zend_Controller_Action {
     public function init() {
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
-        $this->view->loginForm = $this->getLoginForm();
+        $this->view->loginForm = $this->getLoginForm();//??
     }
 
     public function indexAction() {
         // action body
+
     }
 
     public function faqAction() {
@@ -44,41 +45,6 @@ class PublicController extends Zend_Controller_Action {
         // action body
     }
 
-    private function getLoginForm() {
-        $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Public_Auth_Login();
-        $this->_form->setAction($urlHelper->url(array(
-                    'controller' => 'public',
-                    'action' => 'authenticate'), 'default'
-        ));
-        return $this->_form;
-    }
-
-    public function signupAction() {
-
-        $form = new Application_Form_Registra();
-        $form->submit->setLabel('aggiungi');
-        $this->view->form = $form;
-
-        if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if ($form->isValid($formData)) {
-
-                $username = $form->getValue('username');
-                $password = $form->getValue('password');
-                $level = 1; //$form->getValue('level');
-                $name = $form->getValue('name');
-                $surname = $form->getValue('surname');
-                $email = $form->getValue('email');
-                $user = new Application_Model_DbTable_User();
-
-                $user->addUser($username, $password, $level, $name, $surname, $email);
-                $this->_helper->redirector('index');
-            } else {
-                $form->populate($formData);
-            }
-        }
-    }
 
     public function authenticateAction() {
         $request = $this->getRequest();
@@ -91,7 +57,7 @@ class PublicController extends Zend_Controller_Action {
             return $this->render('login');
         }
         if (false === $this->_authService->authenticate($form->getValues())) {
-            $form->setDescription('Autenticazione fallita. Riprova');
+            $form->setDescription('Autenticazione falita. Riprova');
             return $this->render('login');
         }
         $this->_authService->getIdentity()->level;
@@ -109,7 +75,7 @@ class PublicController extends Zend_Controller_Action {
         	$this->getResponse()->setHeader('Content-type','application/json')->setBody($response);
         }
     }
-
+    /*Utilita'?*/
     private function getLoginForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
