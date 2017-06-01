@@ -7,7 +7,7 @@ class Application_Service_Auth
 
     public function __construct()
     {
-        $this->_adminModel = new Application_Model_DbTable_User();
+       $this->_adminModel = new Application_Model_DbTable_User;
     }
 
     public function authenticate($credentials)
@@ -19,7 +19,7 @@ class Application_Service_Auth
         if (!$result->isValid()) {
             return false;
         }
-        $user = $this->_adminModel->getUser($credentials['username']);
+        $user = $this->_adminModel->getUserByName($credentials['username']);
         $auth->getStorage()->write($user);
         return true;
     }
@@ -46,7 +46,7 @@ class Application_Service_Auth
         $this->getAuth()->clearIdentity();
     }
 
-    public function getAuthAdapter($values)
+  public function getAuthAdapter($values)
     {
 		$authAdapter = new Zend_Auth_Adapter_DbTable(
 			Zend_Db_Table_Abstract::getDefaultAdapter(),
