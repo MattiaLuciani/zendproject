@@ -22,7 +22,7 @@ $(document).ready(function(){
 				$(this).parent().find('.description').css({
 					"width":"0px",
 					"height":"0px"
-				})
+				});
 				clicked = false;
 			});
 		}

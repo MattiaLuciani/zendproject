@@ -75,7 +75,7 @@
 	<div class="content-wrapper">
 		<div class="content-element">
 
-			<!--<?php foreach($this->promotion as $promotion) : ?>-->
+			<?php foreach($this->promotion as $promotion) : ?>
 
 				<div class="item">
 					<div class="inner">
@@ -83,28 +83,28 @@
 							<img src=<?= ($this->baseUrl() . "/img/" . $this->escape($promotion->img))?>>
 								<div class="coupon-info">
 									<span class="price" style="">
-									<!--<?php echo $this->escape($promotion->price);?>-->	
+									<?php echo $this->escape($promotion->price);?>	
 									</span>
 									<button class="coupon-button">Info</a>		
 								</div>
 						 		<div class="item-popup">
 						 			<i class="fa fa-close close-item-popup" style="color:black;position:relative;left:96%;top:5px;font-size:1.3rem"></i>
-									<span class="company"><!--<?php echo $this->escape($promotion->company);?>--></span>
+									<span class="company"><?php echo $this->escape($promotion->company);?></span>
 
 									<div class="description">
-										<span class="description"><!--<?php echo $this->escape($promotion->description);?>--></span>
+										<span class="description"><?php echo $this->escape($promotion->description);?></span>
 									</div>
 
 						 			<div class="date-wrapper">
 
 						 				<div class = "date">
 						 					<span>Data di Inizio</span>
-						 					<span class="date-begin"><!--<?php echo $this->escape($promotion->datebegin);?>--></span>	
+						 					<span class="date-begin"><?php echo $this->escape($promotion->datebegin);?></span>	
 						 				</div>
 
 										<div class="date">
 											<span>Data della fine</span>
-											<span class="date-end"><!--<?php echo $this->escape($promotion->datefine);?>--></span>						 			
+											<span class="date-end"><?php echo $this->escape($promotion->datefine);?></span>						 			
 										</div>
 
 						 			</div>
@@ -119,7 +119,7 @@
 					</div>
 				</div>
 
-			<!--<?php endforeach; ?>-->
+			<?php endforeach; ?>
 
 		</div>
 	</div>

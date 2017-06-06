@@ -1,17 +1,25 @@
 var offset = 8;
-var globaldata;
+var getObject = new Object;
+getObject.offset=offset;
 $(window).scroll(function() {
+	
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
-         $.post('public/onscroll/',offset,
+
+    	
+		 
+         $.get('public/onscroll/',getObject,
          	function (data) {
-         		console.log(data);
-         		globaldata = data;
-         		offset+=8;
+         		//console.log(offset);
+         		//offset+=6;
+         		getObject.offset+=8;
          		for(var i = 0;i<data.length;i++){
          			createTemplate(data[i]);	
          		}
          		initJQuery();
-         	
+         		if(data.length==0){
+
+         		}
+				         	
          },"json");
          console.log("Page load");
     }
@@ -81,7 +89,7 @@ function initJQuery(){
 				$(this).parent().find('.description').css({
 					"width":"0px",
 					"height":"0px"
-				})
+				});
 				clicked = false;
 			});
 		}

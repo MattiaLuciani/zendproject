@@ -6,12 +6,13 @@ class Application_Form_Search extends Zend_Form{
 		$category = new Zend_Form_Element_Select('category');
 
 		$category->addMultiOptions(array(
+					"0"=> "Tutte le categorie",
 				 	"1"=> "Auto",
 				 	"2"=> "Informatica",
 				 	"3"=> "Elettronica",
 				 	"4"=> "Abbigliamento",
 				 	"5"=> "Alimentari"));
-		
+
 		$category->setAttrib("name","category");
 		$input = new Zend_Form_Element_Text('input');
 		$input->setAttrib("name","search");

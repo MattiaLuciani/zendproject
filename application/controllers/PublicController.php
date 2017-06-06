@@ -15,6 +15,7 @@ class PublicController extends Zend_Controller_Action {
     public function indexAction() {
         $promotion = new Application_Model_DbTable_Promotion();
         $this->view->promotion = $promotion->fetchAll($promotion->select('*')->limit(8));
+        
     }
 
     public function faqAction() {
@@ -28,15 +29,18 @@ class PublicController extends Zend_Controller_Action {
 
         $offset = $this->getRequest()->getParam('offset');
         $promotion = new Application_Model_DbTable_Promotion();
-        $promotion = $promotion->fetchAll($promotion->select('*')->limit(8,$offset));
 
+        $count = $promotion->select('count(*)');
+        {
+        $promotion = $promotion->fetchAll($promotion->select()->limit(8,$offset));
+        
         //$text = "aaaaaa";
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
         //$data = array("text"=>$text);
         $json = Zend_Json::encode($promotion);
         echo $json;
-        
+        }
 
     }
     public function viewstaticAction() {

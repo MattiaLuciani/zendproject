@@ -182,7 +182,18 @@ nav:after{
 }
 .content .content-wrapper .content-element .item{
 	margin: 10px;
-	overflow: hidden;
+	/*overflow: hidden;*/
+}
+.content .content-wrapper .content-element .item{
+	-webkit-transform: translateY(200px);
+	transform: translateY(200px);
+	-webkit-animation: moveUp 0.65s ease forwards;
+	animation: moveUp 0.65s ease 0ms forwards;
+}
+
+@keyframes moveUp {
+	0% { }
+	100% { -webkit-transform: translateY(0px); transform: translateY(0px);opacity: 1;}
 }
 .content .content-wrapper .content-element .item .inner{
 	width:	300px;
@@ -200,6 +211,7 @@ nav:after{
  	position:relative;
  	top:-4px;
  	height:80px;
+
 }
 .content .content-wrapper .content-element .item
  .inner .wrapper .coupon-info span{
@@ -231,8 +243,9 @@ nav:after{
 	background-color: #2c3f52;
 	position: absolute;
 	visibility: hidden;
-	width:0px;
+	width: 0px;
 	height: 0px;
+	transform: translateY(-200px);
 }
 .content .content-wrapper .content-element .item .item-popup .links{
 	position: relative;
@@ -270,14 +283,13 @@ nav:after{
 	border:0px;
 	border-top: 1px;
 	border-color: black;
-	border-style: solid; 
+	border-style: solid;
 }
 .content .content-wrapper .content-element .item .item-popup .date-wrapper .date{
 	display: flex;
 	flex-direction: column;
 	width:50%;
 	height: 80%;
-
 }
 
 .content .content-wrapper .content-element .item .item-popup .date-wrapper .date span:first-child{
@@ -288,17 +300,4 @@ nav:after{
 	align-self: center;
 	position: relative;
 	top:18%;
-}
-.content .content-wrapper .content-element .item{
-	-webkit-transform: translateY(200px);
-	transform: translateY(200px);
-	-webkit-animation: moveUp 0.65s ease forwards;
-	animation: moveUp 0.65s ease 0ms forwards;
-}
-
-
-
-@keyframes moveUp {
-	0% { }
-	100% { -webkit-transform: translateY(0); transform: translateY(0); opacity: 1; }
 }
