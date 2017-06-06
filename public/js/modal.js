@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('.coupon-button').click(function() {
 		if(!clicked){
 			clicked=true;
-			console.log($(window).scrollTop());
+			//console.log($(window).scrollTop());
 			$(this).parent().next().css({
 				"visibility":"visible",
 				"width":"600px",

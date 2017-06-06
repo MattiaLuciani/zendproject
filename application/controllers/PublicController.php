@@ -7,13 +7,14 @@ class PublicController extends Zend_Controller_Action {
 
     public function init() {
         $this->_helper->layout->setLayout('main');
+        $this->view->searchForm = new Application_Form_Search();
         $this->_authService = new Application_Service_Auth();
         $this->view->loginForm = $this->getLoginForm();//??
     }
 
     public function indexAction() {
-        // action body
-
+        $promotion = new Application_Model_DbTable_Promotion();
+        $this->view->promotion = $promotion->fetchAll($promotion->select('*')->limit(8));
     }
 
     public function faqAction() {
@@ -23,12 +24,28 @@ class PublicController extends Zend_Controller_Action {
     public function whoAction() {
         // action body
     }
+    public function onscrollAction(){
 
+        $offset = $this->getRequest()->getParam('offset');
+        $promotion = new Application_Model_DbTable_Promotion();
+        $promotion = $promotion->fetchAll($promotion->select('*')->limit(8,$offset));
+
+        //$text = "aaaaaa";
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        //$data = array("text"=>$text);
+        $json = Zend_Json::encode($promotion);
+        echo $json;
+        
+
+    }
     public function viewstaticAction() {
         $page = $this->_getParam('staticPage');
         $this->render($page);
     }
+    public function searchAction(){
 
+    }
     public function promotionAction() {
         $this->view->page_name = "promotion";
         $promotion = new Application_Model_DbTable_Promotion();
@@ -75,7 +92,7 @@ class PublicController extends Zend_Controller_Action {
         	$this->getResponse()->setHeader('Content-type','application/json')->setBody($response);
         }
     }
-    /*Utilita'?*/
+
     private function getLoginForm()
     {
     	$urlHelper = $this->_helper->getHelper('url');
@@ -87,8 +104,6 @@ class PublicController extends Zend_Controller_Action {
 		));
 		return $this->_form;
     }
-
-
 
     public function signupAction()
     {

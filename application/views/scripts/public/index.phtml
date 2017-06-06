@@ -17,55 +17,113 @@
 		<span>Just Search</span>
 	</div>
 </div>-->
-<div class="content">
-		<i class="fa fa-close close-btn" style="color:black;position:relative;left:98%;font-size:1.3rem"></i>
-		<div class="content-wrapper">
-				
+<!--<div class="content">
+	<div class="content-wrapper">
 		<div class="content-element">
-			<div class="item">
-				<div class="inner">
-					<div class="wrapper">
-						<img src="http://placehold.it/400x300">
-						<div class="coupon-info">
-							<span style="">Descrizione</span>
-							<a href="" class="coupon-link" style="">Acquistare</a>
+
+			<?php foreach($this->promotion as $promotion) : ?>
+
+				<div class="item">
+					<div class="inner">
+						<div class="wrapper">
+							<img src="http://placehold.it/300x300">
+								<div class="coupon-info">
+									<span style="">
+									<?php echo $this->escape($promotion->price);?>	
+									</span>
+									<button class="coupon-button">Info</a>		
+								</div>
+						 		<div class="item-popup">
+						 			<i class="fa fa-close close-item-popup" style="color:black;position:relative;left:96%;top:5px;font-size:1.3rem"></i>
+									<span><?php echo $this->escape($promotion->company);?></span>
+
+									<div class="description">
+										<span><?php echo $this->escape($promotion->description);?></span>
+									</div>
+
+						 			<div class="date-wrapper">
+
+						 				<div class = "date">
+						 					<span>Data di Inizio</span>
+						 					<span><?php echo $this->escape($promotion->datebegin);?></span>	
+						 				</div>
+
+										<div class="date">
+											<span>Data della fine</span>
+											<span><?php echo $this->escape($promotion->datefine);?></span>						 			
+										</div>
+
+						 			</div>
+
+						 			<div class="links">
+										<a href="">Azienda</a>										
+										<a href="">Acquistare</a>
+									</div>
+
+								</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="item">
-				<div class="inner">
-					<div class="wrapper">
-						<img src="http://placehold.it/400x300">
-						<div class="coupon-info">
-							<span style="">Descrizione</span>
-							<a href="" class="coupon-link" style="">Acquistare</a>
-						</div>
-					</div>	
-				</div>
-			</div>
-			<div class="item">
-				<div class="inner">
-					<div class="wrapper">
-						<img src="http://placehold.it/400x300">
-						<div class="coupon-info">
-							<span style="">Descrizione</span>
-							<a href="" class="coupon-link" style="">Acquistare</a>
-						</div>
-					</div>	
-				</div>
-			</div>
-			<div class="item">
-				<div class="inner">
-					<div class="wrapper">
-						<img src="http://placehold.it/400x300">
-						<div class="coupon-info">
-							<span style="">Descrizione</span>
-							<a href="" class="coupon-link" style="">Acquistare</a>
-						</div>
-					</div>	
-				</div>
-			</div>
+
+			<?php endforeach; ?>
+
 		</div>
 	</div>
+</div>
+-->
+<div class="content">
+	<div class="content-wrapper">
+		<div class="content-element">
+
+			<!--<?php foreach($this->promotion as $promotion) : ?>-->
+
+				<div class="item">
+					<div class="inner">
+						<div class="wrapper">
+							<img src="http://placehold.it/300x300">
+								<div class="coupon-info">
+									<span class="price" style="">
+									<!--<?php echo $this->escape($promotion->price);?>-->	
+									</span>
+									<button class="coupon-button">Info</a>		
+								</div>
+						 		<div class="item-popup">
+						 			<i class="fa fa-close close-item-popup" style="color:black;position:relative;left:96%;top:5px;font-size:1.3rem"></i>
+									<span class="company"><!--<?php echo $this->escape($promotion->company);?>--></span>
+
+									<div class="description">
+										<span class="description"><!--<?php echo $this->escape($promotion->description);?>--></span>
+									</div>
+
+						 			<div class="date-wrapper">
+
+						 				<div class = "date">
+						 					<span>Data di Inizio</span>
+						 					<span class="date-begin"><!--<?php echo $this->escape($promotion->datebegin);?>--></span>	
+						 				</div>
+
+										<div class="date">
+											<span>Data della fine</span>
+											<span class="date-end"><!--<?php echo $this->escape($promotion->datefine);?>--></span>						 			
+										</div>
+
+						 			</div>
+
+						 			<div class="links">
+										<a href="">Azienda</a>										
+										<a href="">Acquistare</a>
+									</div>
+
+								</div>
+						</div>
+					</div>
+				</div>
+
+			<!--<?php endforeach; ?>-->
+
+		</div>
 	</div>
+</div>
+ <?= $this->headScript()->appendFile($this->baseUrl() . '/js/item_anim.js'); ?>
+ <?= $this->headScript()->appendFile($this->baseUrl() . '/js/modal.js'); ?>
+ <?php $this->headScript()->appendFile($this->baseUrl() . '/js/ajax_load.js'); ?>

@@ -63,7 +63,7 @@ CREATE TABLE `company` (
 CREATE TABLE `coupon` (
   `couponId` int(11) NOT NULL,
   `promoId` int(11) NOT NULL,
-  `username` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `used` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -79,7 +79,7 @@ CREATE TABLE `promotion` (
   `datebegin` date DEFAULT NULL,
   `datefine` date NOT NULL,
   `category` varchar(20) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

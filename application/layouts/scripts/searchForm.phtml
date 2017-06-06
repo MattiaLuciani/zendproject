@@ -1,0 +1,16 @@
+<form class="search-container">
+	<div class="search-container-wrap">
+		<select>
+			<?php foreach($this->element->category->getMultiOptions() as $option) : ?>
+
+			<option>
+				<?php echo $option?>
+			</option>
+
+			<?php endforeach;?>		
+		</select>
+		<input type="text" name=<?php echo $this->element->input->getAttrib('name')?> placeholder = "Search">
+		 <button class="search-button"><i class="fa fa-search"></i></button>
+	</div>
+
+</form>
