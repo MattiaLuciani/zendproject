@@ -22,7 +22,7 @@ function createTemplate(object){
 	$(".content .content-wrapper .content-element").append("<div class = 'item'>"+
 		"<div class = 'inner'>"+
  			"<div class = 'wrapper'>"+
- 				"<img src='http://placehold.it/300x300'>"+
+ 				"<img src='/zend/img/" + object.img +"'>"+
  				"<div class='coupon-info'>"+
  					"<span>"+object.price+"</span>"+
  					"<button class='coupon-button'>Info</button>"+

@@ -48,8 +48,23 @@ VALUES('Coop','bmw@gmail.com','www.bmw.it','10000222','','Alimentari','aaaaaa');
 
 
 ;-------------------------------------------------------------------------------
-INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Bmw/img1.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Bmw/img2.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Bmw/img3.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('Audi',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Audi/img1.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('Audi',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Audi/img2.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
+VALUES('Audi',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Audi/img3.jpg');
 
 INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
 VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
@@ -97,16 +112,4 @@ INSERT INTO promotion(company,datebegin,datefine,category,description,price)
 VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
 
 INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
-
-INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
-
-INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
-
-INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
-
-INSERT INTO promotion(company,datebegin,datefine,category,description,price) 
-VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0);
+VALUES('Audi',"2008-11-11","2008-12-11",'Auto','KAKAKAKAAK',15.0);

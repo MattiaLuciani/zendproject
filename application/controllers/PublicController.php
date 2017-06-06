@@ -44,6 +44,13 @@ class PublicController extends Zend_Controller_Action {
         $this->render($page);
     }
     public function searchAction(){
+        $category = $this->getRequest()->getParam('category'); 
+        $keyword = $this->getRequest()->getParam('search');
+
+        $promotion = new Application_Model_DbTable_Promotion();
+
+        $this->view->promotion = $promotion->fetchAll($promotion->select('*')->where("category=?",$category));
+
 
     }
     public function promotionAction() {

@@ -189,6 +189,12 @@ nav:after{
 	height: 300px;
 }
 .content .content-wrapper .content-element .item
+ .inner .wrapper img{
+ 	width: auto;
+ 	height: 300px;
+ }
+
+.content .content-wrapper .content-element .item
  .inner .wrapper .coupon-info{
  	background-color:#2c3f52;
  	position:relative;

@@ -1,6 +1,6 @@
-<form class="search-container">
+<form class="search-container" action=<?= $this->baseUrl() . '/public/search'?>>
 	<div class="search-container-wrap">
-		<select>
+		<select name=<?=$this->element->category->getAttrib('name')?>>
 			<?php foreach($this->element->category->getMultiOptions() as $option) : ?>
 
 			<option>
