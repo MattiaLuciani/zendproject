@@ -1,0 +1,83 @@
+<div class="container">
+        <div class="logo-holder">
+                <a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ),
+                        'default',true
+                    );
+                    ?>">Coupons</a>
+        </div>
+        <?= $this->render('search.phtml'); ?>
+<ul class="nav-list">
+	<li><a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ),
+                        'default',true
+                    );
+                 ?>"
+		title="Home">Home</a></li>
+
+		<!--<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'promotion'),
+                        'default',true
+                    );
+                 ?>"
+		title="Cerca il tuo coupon preferito">Promozioni</a></li>
+        -->
+		<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'company'),
+                        'default',true
+                    );
+                 ?>"
+		title="Cerca la tua azienda preferita">Aziende</a></li>
+        
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'who'),
+                        'default',true
+                    );
+                 ?>"
+		title="Il nostro profilo aziendale">Chi siamo</a></li>
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'faq'),
+                        'default',true
+                    );
+                 ?>"
+		title="Le risposte a tutte le tue domande">Faq</a></li>
+    <li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'edit'),
+                        'default',true
+                    );
+                 ?>"
+		title="Edit"><?php ?></a></li>
+
+    <li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'login'),
+                        'default',true
+                    );
+                 ?>"
+		title="Registrati">Logout</a></li>
+
+</ul>
+</div>

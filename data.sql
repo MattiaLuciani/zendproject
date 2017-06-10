@@ -48,6 +48,20 @@ VALUES('Coop','bmw@gmail.com','www.bmw.it','10000222','','Alimentari','aaaaaa');
 
 
 ;-------------------------------------------------------------------------------
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Supermercato Si',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/SI/img1.png');
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Supermercato Si',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/SI/img2.png');
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Supermercato Si',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/SI/img3.jpg');
+
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Coop',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/Coop/img4.png');
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Coop',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/Coop/img5.png');
+INSERT INTO promotion(company,datebegin,datefine,category,description,price,img)
+VALUES('Coop',"2008-10-10","2010-12-10",'Alimentari','lololololl',0.0,'Promotions/Alimentari/Coop/img6.jpg');
+
 INSERT INTO promotion(company,datebegin,datefine,category,description,price,img) 
 VALUES('BMW',"2008-11-11","2008-12-11",'Auto','OLOLOLOLOLOLO',12.0,'Promotions/Auto/Bmw/img1.jpg');
 

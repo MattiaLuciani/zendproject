@@ -48,13 +48,23 @@ class PublicController extends Zend_Controller_Action {
         $this->render($page);
     }
     public function searchAction(){
+
         $category = $this->getRequest()->getParam('category'); 
         $keyword = $this->getRequest()->getParam('search');
 
         $promotion = new Application_Model_DbTable_Promotion();
 
-        $this->view->promotion = $promotion->fetchAll($promotion->select('*')->where("category=?",$category));
-
+        if($category!="Tutte le categorie"){
+            $this->view->promotion = $promotion->fetchAll($promotion->select('*')->where("category= ? ",$category));
+            $this->view->companies = $promotion->fetchAll($promotion->select()->distinct()->from(array('c' => 'promotion'),'company')->where("category = ?",$category));
+            $this->categories = null;
+        }
+        else{
+            $this->view->promotion = $promotion->fetchAll($promotion->select('*'));
+            $this->view->companies = $promotion->fetchAll($promotion->select()->distinct()->from(array('c' => 'promotion'),'company'));
+            $this->view->categories = $promotion->fetchAll($promotion->select()->distinct()->from(array('c' => 'promotion'),'category'));
+        }
+        
 
     }
     public function promotionAction() {
@@ -68,12 +78,13 @@ class PublicController extends Zend_Controller_Action {
         $company = new Application_Model_DbTable_Company();
         $this->view->company = $company->fetchAll();
     }
-
     public function loginAction() {
         // action body
     }
 
-
+    private function getFilterForm(){
+        
+    }
     public function authenticateAction() {
         $request = $this->getRequest();
         if (!$request->isPost()) {
@@ -89,7 +100,7 @@ class PublicController extends Zend_Controller_Action {
             return $this->render('login');
         }
         $this->_authService->getIdentity()->level;
-        return $this->_helper->redirector('index' );
+        return $this->_helper->redirector('index','user');
     }
 
     public function validateloginAction()

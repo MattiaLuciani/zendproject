@@ -1,3 +1,30 @@
+<form>
+<div style="background-color: white">
+	<span>Sono state trovate</span>
+</div>
+<div style="display: flex;background-color: white;flex-direction: column;">
+<span style="align-self: center;">Aziende</span>
+	<div class="filter" style ="display: flex;
+	    justify-content: space-around;
+	    background-color: white;">
+	    <?php foreach ($this->companies as $company) : ?>
+		<label><input type="checkbox" checked><?=$company->company?></label>
+		<?php endforeach ?>
+	</div>
+</div>
+<?php if($this->categories!=null) : ?>
+<div style="display: flex;background-color: white;flex-direction: column;">
+<span style="width:100%;text-align: center;">Categorie</span>
+	<div class="filter" style ="display: flex;
+	    justify-content: space-around;
+	    background-color: white;">	  
+	    <?php foreach ($this->categories as $category) : ?>
+		<label><input type="checkbox" checked><?=$category->category?></label>
+		<?php endforeach ?>
+	</div>
+</div>
+<?php endif ?>
+</form>
 <div class="content">
 	<div class="content-wrapper">
 		<div class="content-element">
