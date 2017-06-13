@@ -9,8 +9,8 @@ class Application_Form_Registra extends Zend_Form
 
 
       /**A cosa serve?*/
-      $level = new Zend_Form_Element_Hidden('level'); 
-      $level->addFilter('Int');
+      $role = new Zend_Form_Element_Hidden('role'); 
+      //$level->addFilter('Int');
 
       $username = new Zend_Form_Element_Text('username');
 
@@ -57,7 +57,7 @@ class Application_Form_Registra extends Zend_Form
 
       $submit->setAttrib('username', 'submitbutton');
       
-      $this->addElements(array($username, $password, $level, $name, $surname, $email, $submit));
+      $this->addElements(array($username, $password,$role,$name, $surname, $email, $submit));
     }
 
 

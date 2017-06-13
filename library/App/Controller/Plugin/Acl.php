@@ -8,8 +8,11 @@ class App_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 
 	public function __construct()
 	{
+		
         $this->_auth = Zend_Auth::getInstance();
+        //Zend_Debug::dump($this->_auth->getIdentity(), "Class Name : App_Controller_Plugin_Acl identity : ");
 		$this->_role = !$this->_auth->hasIdentity() ? 'unregistered' : $this->_auth->getIdentity()->role;
+		//Zend_Debug::dump($this->_role,"Class Name : App_Controller_Plugin_Acl role : ");
     	$this->_acl = new Application_Model_Acl();    	
 	}
 
@@ -25,6 +28,6 @@ class App_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
 	{
    		$this->_request->setModuleName('default')
    					   ->setControllerName('public')
-					   ->setActionName('index');
+					   ->setActionName('login');
 	}
 }

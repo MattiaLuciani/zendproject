@@ -113,7 +113,7 @@ CREATE TABLE `promotion` (
   `price` float NOT NULL,
   `img` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`promoid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `promotion` (
 
 LOCK TABLES `promotion` WRITE;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
-INSERT INTO `promotion` VALUES (1,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img1.jpg'),(2,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img2.jpg'),(3,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img3.jpg'),(4,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img1.jpg'),(5,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img2.jpg'),(6,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img3.jpg');
+INSERT INTO `promotion` VALUES (1,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img1.jpg'),(2,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img2.jpg'),(3,'BMW','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Bmw/img3.jpg'),(4,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img1.jpg'),(5,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img2.jpg'),(6,'Audi','2008-11-11','2008-12-11','Auto','OLOLOLOLOLOLO',12,'Promotions/Auto/Audi/img3.jpg'),(7,'Supermercato Si','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/SI/img1.png'),(8,'Supermercato Si','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/SI/img2.png'),(9,'Supermercato Si','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/SI/img3.jpg'),(10,'Coop','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/Coop/img4.png'),(11,'Coop','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/Coop/img5.png'),(12,'Coop','2008-10-10','2010-12-10','Alimentari','lololololl',0,'Promotions/Alimentari/Coop/img6.jpg');
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +136,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `role` varchar NOT NULL DEFAULT 'unregistered',
+  `role` varchar(30) NOT NULL DEFAULT 'unregistered',
   `name` varchar(30) NOT NULL,
   `surname` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin0','admin0',0,'','','');
+INSERT INTO `user` VALUES ('admin0','admin0','admin','','',''),('user','user','user','Name','SURNAME','aaa');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-06 15:27:54
+-- Dump completed on 2017-06-12 19:49:29

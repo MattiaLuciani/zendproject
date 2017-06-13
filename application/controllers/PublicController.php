@@ -4,14 +4,30 @@ class PublicController extends Zend_Controller_Action {
 
     protected $_authService;
     protected $_form;
-
+    //protected $_user;
+    //protected $_role;
     public function init() {
         $this->_helper->layout->setLayout('main');
         $this->view->searchForm = new Application_Form_Search();
         $this->_authService = new Application_Service_Auth();
-        $this->view->loginForm = $this->getLoginForm();//??
-    }
+        $this->view->role = $this->getUserRole();
 
+        //$adapter = $this->_authService->getAuthAdapter(array("username" => "admin0","password" =>"admin0"));
+        //$this->_authService->authenticate($adapter);
+        //Zend_Debug::dump($this->getUserRole(),"PublicController [userRole] : ");
+        $this->view->loginForm = $this->getLoginForm();//??
+        //$_user = Zend_Auth::getInstance()->getIdentity();
+        //Zend_Layout::getMvcInstance()->assign("user",$_user['role']);
+       // Zend_Debug::dump($_user);
+    }
+    public function getUserRole(){
+        if(!$this->_authService->getIdentity()){
+            return 'unregistered';
+        }
+        else{
+            return $this->_authService->getIdentity()->role;
+        }
+    }
     public function indexAction() {
         $promotion = new Application_Model_DbTable_Promotion();
         $this->view->promotion = $promotion->fetchAll($promotion->select('*')->limit(8));
@@ -26,7 +42,7 @@ class PublicController extends Zend_Controller_Action {
         // action body
     }
     public function onscrollAction(){
-
+        //Zend_Debug::dump("aa");
         $offset = $this->getRequest()->getParam('offset');
         $promotion = new Application_Model_DbTable_Promotion();
 
@@ -80,13 +96,16 @@ class PublicController extends Zend_Controller_Action {
     }
     public function loginAction() {
         // action body
-    }
-
-    private function getFilterForm(){
         
     }
+
+    /*private function getFilterForm(){
+        
+    }*/
     public function authenticateAction() {
+
         $request = $this->getRequest();
+
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
         }
@@ -95,15 +114,18 @@ class PublicController extends Zend_Controller_Action {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
             return $this->render('login');
         }
+
         if (false === $this->_authService->authenticate($form->getValues())) {
             $form->setDescription('Autenticazione falita. Riprova');
             return $this->render('login');
         }
-        $this->_authService->getIdentity()->level;
-        return $this->_helper->redirector('index','user');
+        
+            return  $this->_helper->redirector('index',$this->_authService->getIdentity()->role);     
+        //Zend_Debug::dump($this->_authService->getIdentity() , "Class Name PublicController role :");
+       
     }
 
-    public function validateloginAction()
+    /*public function validateloginAction()
     {
         $this->_helper->getHelper('layout')->disableLayout();
     		$this->_helper->viewRenderer->setNoRender();
@@ -113,7 +135,7 @@ class PublicController extends Zend_Controller_Action {
         if ($response !== null) {
         	$this->getResponse()->setHeader('Content-type','application/json')->setBody($response);
         }
-    }
+    }*/
 
     private function getLoginForm()
     {
@@ -124,6 +146,7 @@ class PublicController extends Zend_Controller_Action {
 			'action' => 'authenticate'),
 			'default'
 		));
+
 		return $this->_form;
     }
 
@@ -144,13 +167,13 @@ class PublicController extends Zend_Controller_Action {
 
           $username= $form->getValue('username');
           $password= $form->getValue('password');
-          $level=1; //$form->getValue('level');
+          $role="user"; //$form->getValue('level');
           $name=$form->getValue('name');
           $surname=$form->getValue('surname');
           $email=$form->getValue('email');
           $user = new Application_Model_DbTable_User();
 
-            $user->addUser($username,$password,$level,$name,$surname,$email);
+            $user->addUser($username,$password,$role,$name,$surname,$email);
 
             $this->_helper->redirector('index');
           

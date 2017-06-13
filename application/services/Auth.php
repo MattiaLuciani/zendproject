@@ -2,25 +2,30 @@
 
 class Application_Service_Auth
 {
-    protected $_adminModel;
+    protected $_userModel;
     protected $_auth;
 
     public function __construct()
     {
-       $this->_adminModel = new Application_Model_DbTable_User;
+       //Zend_Debug::dump("__construct", "Application_Service_Auth");
+       $this->_userModel = new Application_Model_DbTable_User;
+
     }
 
     public function authenticate($credentials)
     {
+        
         $adapter = $this->getAuthAdapter($credentials);
         $auth    = $this->getAuth();
         $result  = $auth->authenticate($adapter);
-
+        //$username = $credentials['username'];
+        Zend_Debug::dump($auth->authenticate($adapter), "result");
         if (!$result->isValid()) {
             return false;
         }
-        $user = $this->_adminModel->getUserByName($credentials['username']);
-        $auth->getStorage()->write($user);
+        $user = $this->_userModel->getUserByName($credentials["username"]);
+        
+        $auth->getStorage()->write($user);  
         return true;
     }
 
@@ -48,14 +53,16 @@ class Application_Service_Auth
 
   public function getAuthAdapter($values)
     {
+        Zend_Debug::dump($values,"getAuthAdapter");
 		$authAdapter = new Zend_Auth_Adapter_DbTable(
 			Zend_Db_Table_Abstract::getDefaultAdapter(),
 			'user',
 			'username',
-			'password'
+			'password',
+            'role'
 		);
-		$authAdapter->setIdentity($values['username']);
-		$authAdapter->setCredential($values['password']);
+		$authAdapter->setIdentity($values["username"]);
+		$authAdapter->setCredential($values["password"]);
         return $authAdapter;
     }
 }

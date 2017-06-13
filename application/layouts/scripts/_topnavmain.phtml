@@ -59,6 +59,7 @@
                     );
                  ?>"
 		title="Le risposte a tutte le tue domande">Faq</a></li>
+        <?php if($this->role =='unregistered') : ?>
     <li><a
 		href="
                 <?= $this->url(array(
@@ -67,17 +68,8 @@
                         'default',true
                     );
                  ?>"
-		title="Registrati">regstrati</a></li>
-    <li><a
-		href="
-                <?= $this->url(array(
-                        'controller' => 'user',
-                        'action'     => 'edit'),
-                        'default',true
-                    );
-                 ?>"
-		title="Edit">edit</a></li>
-
+		title="Registrati">Regstrati</a></li>  
+    
     <li><a
 		href="
                 <?= $this->url(array(
@@ -86,7 +78,88 @@
                         'default',true
                     );
                  ?>"
-		title="Registrati">Login</a></li>
+		title="Login">Login</a></li>
+    <?php endif ?>
+    <?php if($this->role == 'user') : ?>
+            <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'edit'),
+                        'default',true
+                    );
+                 ?>"
+        title="Cambiare profilo">Profilo</a></li>
 
+    <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'logout'),
+                        'default',true
+                    );
+                 ?>"
+        title="Uscire">Logout</a></li>
+    <?php endif ?> 
+    <?php if($this->role == 'staff') : ?>
+        <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'edit'),
+                        'default',true
+                    );
+                 ?>"
+        title="Cambiare profilo">Profilo</a></li>
+
+    <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'logout'),
+                        'default',true
+                    );
+                 ?>"
+        title="Uscire">Logout</a></li>
+        <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'panel'),
+                        'default',true
+                    );
+                 ?>"
+        title="Uscire">Staff Panel</a></li>
+    <?php endif ?>
+    <?php if($this->role == 'admin') : ?>
+        <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'edit'),
+                        'default',true
+                    );
+                 ?>"
+        title="Cambiare profilo">Profilo</a></li>
+
+    <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'logout'),
+                        'default',true
+                    );
+                 ?>"
+        title="Uscire">Logout</a></li>
+        <li><a
+        href="
+                <?= $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'logout'),
+                        'default',true
+                    );
+                 ?>"
+        title="Uscire">Admin Panel</a></li>
+    <?php endif ?>   
 </ul>
 </div>
