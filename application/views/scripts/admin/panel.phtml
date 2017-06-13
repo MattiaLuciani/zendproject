@@ -1,0 +1,97 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/table_style.css'); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/admin_panel_style.css'); ?>
+<div class="sidebar">
+	<ul class="sidebar-list">
+		<li><a href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'panel',
+                        'param' => 'user'
+                        ),
+                        'default',true
+                    );
+                 ?>">Utenti</a></li>
+		<li><a href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'panel',
+                        'param' => 'company'
+                        ),
+                        'default',true
+                    );
+                 ?>">Aziende</a></li>
+		<li><a href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'panel',
+                        'param' => 'category'
+                        ),
+                        'default',true
+                    );
+                 ?>">Tipologie</a></li>
+		<li><a href=" <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'panel',
+                        'param' => 'stats'
+                        ),
+                        'default',true
+                    );
+                 ?>">Statistiche</a></li>
+	</ul>
+</div>
+
+
+<?php if($this->type == 'user') : ?>
+<div class="table-title">
+	<h3>Tabella di Utenti</h3>
+</div>
+<table class="table-fill">
+	<thead>
+	<tr>
+		<!--<th class="text-left">username</th>
+		<th class="text-left">password</th>
+		<th class="text-left">role</th>
+		<th class="text-left">name</th>
+		<th class="text-left">surname</th>
+		<th class="text-left">email</th>-->
+		<?php echo $this->tableHeaderGenerator($this->model[0]) ?>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<?php foreach($this->model as $item) :?>
+	<tr><!--<?php Zend_Debug::dump(array_keys($item->toArray()),"item")?>-->
+		<!--<td class="text-left"><?php echo $item->username?></td>
+		<td class="text-left"><?php echo $item->password?></td>
+		<td class="text-left"><?php echo $item->role?></td>
+		<td class="text-left"><?php echo $item->name?></td>
+		<td class="text-left"><?php echo $item->surname?></td>
+		<td class="text-left"><?php echo $item->email?></td>
+	</tr>-->
+	<?php echo $this->tableRowGenerator($item) ?>
+<?php endforeach ?>
+	</tbody>
+</table>
+<?php endif ?>
+
+
+<?php if($this->type == 'company') : ?>
+<div class="table-title">
+	<h3>Tabella di Aziende</h3>
+</div>
+<table class="table-fill">
+	<thead>
+	<tr>
+		<?php echo $this->tableHeaderGenerator($this->model[0]) ?>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<?php foreach($this->model as $item) :?>
+	<tr>
+	<?php echo $this->tableRowGenerator($item) ?>
+	</tr>
+<?php endforeach ?>
+	</tbody>
+</table>
+<?php endif ?>
+
+<?php if($this->model instanceof Zend_Paginator) {
+	  		echo $this->paginationControl($this->model,'Sliding','admin/_paginator.phtml');
+	  } 
+?>
