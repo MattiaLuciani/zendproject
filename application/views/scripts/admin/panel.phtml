@@ -1,5 +1,6 @@
 <?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/table_style.css'); ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/admin_panel_style.css'); ?>
+<?php $this->headScript()->prependFile($this->baseUrl() . '/js/admin_panel.js'); ?>
 <div class="sidebar">
 	<ul class="sidebar-list">
 		<li><a href=" <?= $this->url(array(
@@ -13,7 +14,8 @@
 		<li><a href=" <?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'panel',
-                        'param' => 'company'
+                        'param' => 'company',
+                        'page' => 1
                         ),
                         'default',true
                     );
@@ -40,22 +42,17 @@
 
 <?php if($this->type == 'user') : ?>
 <div class="table-title">
-	<h3>Tabella di Utenti</h3>
+	<!--<h3>Tabella di Utenti</h3>-->
 </div>
 <table class="table-fill">
 	<thead>
 	<tr>
-		<!--<th class="text-left">username</th>
-		<th class="text-left">password</th>
-		<th class="text-left">role</th>
-		<th class="text-left">name</th>
-		<th class="text-left">surname</th>
-		<th class="text-left">email</th>-->
-		<?php echo $this->tableHeaderGenerator($this->model[0]) ?>
+		<?php echo $this->tableHeaderGenerator($this->model[0]); ?>
+		<th class="text-left">operazioni</th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
-	<?php foreach($this->model as $item) :?>
+	<?php foreach($this->model as $item) : ?>
 	<tr><!--<?php Zend_Debug::dump(array_keys($item->toArray()),"item")?>-->
 		<!--<td class="text-left"><?php echo $item->username?></td>
 		<td class="text-left"><?php echo $item->password?></td>
@@ -65,33 +62,176 @@
 		<td class="text-left"><?php echo $item->email?></td>
 	</tr>-->
 	<?php echo $this->tableRowGenerator($item) ?>
+	<td class="operations">
+		<ul class="operation-list">
+			<li class="operation update">
+				<a href = <?= $this->url(array(
+		                        'controller' => 'admin',
+		                        'action'     => 'edituser',
+		                        'param' => $item->username
+		                        ),
+		                        'default',true
+		                    );
+                 		?>
+                 >
+                 	<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"></i>
+                </a>
+            </li>
+			<li class="operation delete">
+				<a href=<?= $this->url(array(
+		                        'controller' => 'admin',
+		                        'action'     => 'deleteuser',
+		                        'param' => $item->username
+		                        ),
+		                        'default',true
+		                    );
+                 		?>
+                 >
+                 	<i class="fa fa-minus-circle" style="font-size: 20px" aria-hidden="true"></i>
+             	</a>
+         	</li>
+		</ul>
+	</td>
 <?php endforeach ?>
 	</tbody>
 </table>
+<div class="add-category">
+	<a href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'addstaff',
+			                        ),
+			                        'default',true
+			                    );
+	                 		?> style = "font-size: 50px;position: relative;left: 50%;color: black"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+</div>
 <?php endif ?>
+
+
 
 
 <?php if($this->type == 'company') : ?>
 <div class="table-title">
-	<h3>Tabella di Aziende</h3>
+	<!--<h3>Tabella di Aziende</h3>-->
 </div>
 <table class="table-fill">
 	<thead>
 	<tr>
-		<?php echo $this->tableHeaderGenerator($this->model[0]) ?>
+		
+		<?php echo $this->tableHeaderGenerator($this->model[0]); ?>
+		<th class="text-left">operazioni</th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<?php foreach($this->model as $item) : ?>
+	<tr>
+	<?php echo $this->tableRowGenerator($item) ?>
+		<td class="operations">
+			<ul class="operation-list">
+				<li class="operation update">
+					<a href = <?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'editcompany',
+			                        'param' => 	$item->companyid
+			                        ),
+			                        'default',true
+			                    );
+	                 		?>
+	                 >
+	                 	<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"></i>
+	                </a>
+	            </li>
+				<li class="operation delete">
+					<a href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'deletecompany',
+			                        'param' => $item->companyid
+			                        ),
+			                        'default',true
+			                    );
+	                 		?>
+	                 >
+	                 	<i class="fa fa-minus-circle" style="font-size: 20px" aria-hidden="true"></i>
+	             	</a>
+	         	</li>
+			</ul>
+		</td>
+	</tr>
+<?php endforeach?>
+	</tbody>
+</table>
+<div class="add-category">
+	<a href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'addcompany',
+			                        ),
+			                        'default',true
+			                    );
+	                 		?> style = "font-size: 50px;position: relative;left: 50%;color: black"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+</div>
+<?php endif ?>
+
+
+
+	<!--CATEGORIE-->
+
+
+<?php if($this->type == 'category') : ?>
+<div class="table-title">
+	<!--<h3>Tabella di Aziende</h3>-->
+</div>
+<table class="table-fill">
+	<thead>
+	<tr>
+		<?php echo $this->tableHeaderGenerator($this->model[0]); ?>
+		<th class="text-left">operazioni</th>
 	</tr>
 	</thead>
 	<tbody class="table-hover">
 	<?php foreach($this->model as $item) :?>
 	<tr>
 	<?php echo $this->tableRowGenerator($item) ?>
+		<td class="operations">
+			<ul class="operation-list">
+				<li class="operation update">
+					<a href = <?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'editcategory',
+			                        'param' => $item->catId
+			                        ),
+			                        'default',true
+			                    );
+	                 		?>
+	                 >
+	                 	<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"></i>
+	                </a>
+	            </li>
+				<li class="operation delete">
+					<a href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'deletecategory',
+			                        'param' => $item->catId
+			                        ),
+			                        'default',true
+			                    );
+	                 		?>
+	                 >
+	                 	<i class="fa fa-minus-circle" style="font-size: 20px" aria-hidden="true"></i>
+	             	</a>
+	         	</li>
+			</ul>
+		</td>
 	</tr>
-<?php endforeach ?>
+<?php endforeach; ?>
 	</tbody>
 </table>
-<?php endif ?>
+<div class="add-category">
+	<a href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'addcategory',
+			                        ),
+			                        'default',true
+			                    );
+	                 		?> style = "font-size: 50px;position: relative;left: 50%;color: black"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+</div>
+<?php endif; ?>
 
-<?php if($this->model instanceof Zend_Paginator) {
-	  		echo $this->paginationControl($this->model,'Sliding','admin/_paginator.phtml');
-	  } 
-?>

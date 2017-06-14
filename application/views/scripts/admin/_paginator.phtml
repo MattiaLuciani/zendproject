@@ -1,24 +1,24 @@
-<?php if ($this->pageCount > 1): ?>
+<!--<?php if ($this->pageCount > 1): ?>-->
 <div id="pagination">
 <?php echo $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?> di <?= $this->totalItemCount; ?> ---
 
 <!-- Link alla prima pagina -->
-<?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'index', 'page' => $this->first)); ?>">Inizio</a> |
-<?php else: ?>
+<!--<?php if (isset($this->previous)): ?>-->
+  <a href="<?= $this->url(array('controller' => 'admin', 'action' => 'panel', array('param' =>'company'))); ?>">Inizio</a> |
+<!--<?php else: ?>-->
   Inizio |
-<?php endif; ?>
+<!--<?php endif; ?>-->
 
 <!-- Link alla pagina precedente -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'index', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'panel', array('page' => $this->previous,'offset'=>-8))); ?>">&lt; Precedente</a> |
 <?php else: ?>
   &lt; Precedente |
 <?php endif; ?>
 
 <!-- Link alla pagina successiva -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'index', 'page' => $this->next)); ?>">Successivo &gt;</a> |
+  <a href="<?= $this->url(array('controller' => 'admin', 'action' => 'panel', array('page' => $this->next,'param'=>'company','offset'=>8))); ?>">Successivo &gt;</a> |
 <?php else: ?>
   Successivo &gt; |
 <?php endif; ?>

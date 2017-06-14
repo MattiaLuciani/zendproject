@@ -8,8 +8,9 @@ class Zend_View_Helper_TableRowGenerator extends Zend_View_Helper_HtmlElement{
 				$temp = "<td class = 'text-left'>" . $value . "</td>";
 				$string = $string . $temp;		
 			}
-			
+
 		return $string;
+
 	}
 }
 }
