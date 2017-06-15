@@ -21,7 +21,9 @@ class Application_Model_Acl extends Zend_Acl{
 		$this->addRole(new Zend_Acl_Role('staff'))
 			 ->add(new Zend_Acl_Resource('staff'))
 			 ->allow('staff','staff')
-			 ->allow('staff','public');
+			 ->allow('staff','public')
+			 ->allow('staff','error')
+			 ->allow('staff','user');
 
 		// ACL for administrator
 		$this->addRole(new Zend_Acl_Role('admin'))

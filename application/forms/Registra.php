@@ -58,6 +58,8 @@ class Application_Form_Registra extends Zend_Form
       $submit->setAttrib('username', 'submitbutton');
       
       $this->addElements(array($username, $password,$role,$name, $surname, $email, $submit));
+
+      $this->setDecorators(array(array('ViewScript',array('viewScript'=>'public/formscripts/registerForm.phtml'))));
     }
 
 

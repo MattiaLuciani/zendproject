@@ -80,19 +80,19 @@
 				<div class="item">
 					<div class="inner">
 						<div class="wrapper">
-							<img src=<?= ($this->baseUrl() . "/img/" . $this->escape($promotion->img))?>>
-								<div class="coupon-info">
-									<span class="price" style="">
-									<?php echo $this->escape($promotion->price);?>	
-									</span>
-									<a href=<?= $this->url(array(
+							<a href="<?= $this->url(array(
                        						 'controller' => 'public',
                        						 'action'     => 'viewpromotion',
                        						 'id' => $promotion->promoid
                         					),
                         					'default',true
                    						 );
-                    				?>>Info</a>		
+                    				?>"><img src=<?= ($this->baseUrl() . "/img/" . $this->escape($promotion->img))?>></a>
+								<div class="coupon-info">
+									<span class="price" style="">
+									<?php echo $this->escape($promotion->price);?>	
+									</span>
+											
 								</div>
 						</div>
 					</div>

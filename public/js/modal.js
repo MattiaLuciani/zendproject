@@ -28,23 +28,4 @@ $(document).ready(function(){
 		}
 	});
 });*/
-$(document).ready(function(){
 
-  $('.coupon-button').click( function() {
-  	
-    $( "#dialog-confirm" ).dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-      buttons: {
-        "Delete all items": function() {
-          $( this ).dialog( "close" );
-        },
-        Cancel: function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-  });
-});

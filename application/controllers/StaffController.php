@@ -14,7 +14,7 @@ class StaffController extends Zend_Controller_Action{
 	public function editpromotionAction(){
 
 		$id = $this->getRequest()->getParam('param');
-		Zend_Debug::dump($this->getRequest()->getPost());
+		//Zend_Debug::dump($this->getRequest()->getPost());
 
 		$model = new Application_Model_DbTable_Promotion;
 
@@ -37,7 +37,7 @@ class StaffController extends Zend_Controller_Action{
           $category = $formData['category'];
           $description = $formData['description'];
           $price = $formData['price'];
-          if($datefine == " " || $datebegin == " ")
+          if($datefine == '' || $datebegin == '')
           	  $model->updatePromotion($id,$company,$promotion->datebegin,$promotion->datefine,$category,$description,$price);
       	  else
           	  $model->updatePromotion($id,$company,$datebegin,$datefine,$category,$description,$price);

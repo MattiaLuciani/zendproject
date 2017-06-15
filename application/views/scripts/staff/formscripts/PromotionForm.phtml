@@ -1,25 +1,43 @@
-<form method = "post">
-<label>Azienda
-  <input type="text" name="company" value=<?= $this->element->company->getValue()?>>
-</label>
-<label>Data di inizio
-  <input type="date" name="datebegin" value = >
-</label>
-<label>Data della fine
-  <input type="date" name="datefine" value = >
-</label>
-<label>Tipologia
-  <select name=<?=$this->element->category->getName()?>>
-  <?php foreach ($this->element->category->getMultiOptions() as $option) : ?>
-  <option><?php echo $option ?></option>
-  <?php endforeach ?>
-  </select>
-</label>
-<label>Descrizione  
-  <textarea name="description"><?= $this->element->description->getValue()?> </textarea>
-</label>
-<label>Prezzo
-  <input type="number" name="price" value = <?= $this->element->price->getValue()?> >
-</label>  
-  <input type="submit" name=<?php echo $this->element->submit->getAttrib('name')?>>
+<?php $this->headLink()->prependStylesheet($this->baseUrl().'/css/forms/Promotion.css'); ?>
+<form class="promotion-form" method = "post">
+	<label class="title">Aggiungi/Modicia Aziende</label>
+	<ul class="form-list">
+	<li>
+		  <label>Azienda</label>
+		  <input type="text" name="company" value=<?= $this->element->company->getValue()?>>
+			
+	</li>
+	<li>
+		  <label>Data di inizio</label>
+	 	  <input type="date" name="datebegin" value = >
+			
+	</li>
+	<li>
+		<label>Data della fine</label>
+		  <input type="date" name="datefine" value = >
+		
+	</li>
+	<li>
+		<label>Tipologia</label>
+		  <select name=<?=$this->element->category->getName()?>>
+		  <?php foreach ($this->element->category->getMultiOptions() as $option) : ?>
+		  <option><?php echo $option ?></option>
+		  <?php endforeach ?>
+		  </select>
+		
+	</li>
+	<li>
+		<label>Descrizione</label>  
+		  <textarea name="description"><?= $this->element->description->getValue()?> </textarea>
+		
+	</li>
+	<li>
+		<label>Prezzo</label>
+		  <input type="number" name="price" value = <?= $this->element->price->getValue()?> >
+		
+	</li>
+	<li class="submit">  
+	  	<input  type="submit" name=<?php echo $this->element->submit->getAttrib('name')?>>
+    </li>
+	</ul>
 </form>

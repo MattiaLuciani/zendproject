@@ -104,8 +104,10 @@ class PublicController extends Zend_Controller_Action {
         $id = $this->getRequest()->getParam('id');
         $model = new Application_Model_DbTable_Promotion;
         $coupon_model = new Application_Model_DbTable_Coupon;
-
-        $this->view->validation= $coupon_model->checkCoupon($id,$this->_authService->getIdentity()->username);
+        if($this->getUserRole()=='user'){
+            $this->view->validation= $coupon_model->checkCoupon($id,$this->_authService->getIdentity()->username);
+        }
+        
         $this->view->acl = $this->acl;
         $this->view->auth = $this->getUserRole();
         //Zend_Debug::dump($this->_authService);
