@@ -19,7 +19,7 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
         public function getAllPromotions(){
             return $this->fetchAll($this->select());
         }
-        public function addPromo($company,$datebegin,$datefine,$category,$description,$price)
+        public function addPromotion($company,$datebegin,$datefine,$category,$description,$price)
         {
             $data = array(
             'company' => $company,
@@ -27,14 +27,14 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
             'datefine'=> $datefine,
             'category' => $category,
             'description' =>$description,
-            'price' => $price,
+            'price' => $price
             );
 
             $this->insert($data);
         }
 
 
-        public function updatePromo($company,$datebegin,$datefine,$category,$description,$price)
+        public function updatePromotion($promoid,$company,$datebegin,$datefine,$category,$description,$price)
          {
             $data = array(
             'company' => $company,
@@ -42,15 +42,15 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
             'datefine'=> $datefine,
             'category' => $category,
             'description' =>$description,
-            'price' => $price,
+            'price' => $price
             );
-            $this->update($data, 'id = '. (int)$promoid);
+            $this->update($data, 'promoid = '. (int)$promoid);
         }
 
 
-        public function deletePromo($promoid)
+        public function deletePromotion($promoid)
         {
-             $this->delete('id =' . (int)$promoid);
+             $this->delete('promoid =' . $promoid);
         }
 }
 

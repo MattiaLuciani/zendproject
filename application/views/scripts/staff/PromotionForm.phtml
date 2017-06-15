@@ -1,0 +1,25 @@
+<form method = "post">
+<label>Azienda
+  <input type="text" name="company" value=<?= $this->element->company->getValue()?>>
+</label>
+<label>Data di inizio
+  <input type="date" name="datebegin" value = >
+</label>
+<label>Data della fine
+  <input type="date" name="datefine" value = >
+</label>
+<label>Tipologia
+  <select name=<?=$this->element->category->getName()?>>
+  <?php foreach ($this->element->category->getMultiOptions() as $option) : ?>
+  <option><?php echo $option ?></option>
+  <?php endforeach ?>
+  </select>
+</label>
+<label>Descrizione  
+  <textarea name="description"><?= $this->element->description->getValue()?> </textarea>
+</label>
+<label>Prezzo
+  <input type="number" name="price" value = <?= $this->element->price->getValue()?> >
+</label>  
+  <input type="submit" name=<?php echo $this->element->submit->getAttrib('name')?>>
+</form>

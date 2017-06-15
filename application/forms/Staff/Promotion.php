@@ -7,6 +7,8 @@ class Application_Form_Staff_Promotion extends Zend_Form{
 	    $this->setName('editcompany');
 	    $this->setAttrib('enctype', 'multipart/form-data');
 	    $category_model = new Application_Model_DbTable_Category;
+	    /*$promotion = new Application_Model_DbTable_Promotion;
+	    $promotion = $promotion->getPromotion*/
 	    $categories = $category_model->getAllCategories()->toArray();
 
 	    $category = array();
@@ -33,6 +35,11 @@ class Application_Form_Staff_Promotion extends Zend_Form{
             'required' => true,
         	'multiOptions' => $category
         ));
+		$this->addElement('text' , 'price', array(
+			'label' => 'indirizzo',
+			'filters' => array('StripTags','StringTrim'),
+			'required' => false 
+		));
         $this->addElement('text' , 'description', array(
 			'label' => 'descrizione',
 			'filters' => array('StripTags','StringTrim'),
@@ -42,5 +49,7 @@ class Application_Form_Staff_Promotion extends Zend_Form{
 		$this->addElement('submit' , 'submit', array(
 			'label' => 'inviare' 
 		));
+
+		$this->setDecorators(array(array('ViewScript',array('viewScript'=>'staff/PromotionForm.phtml'))));
 	}
 }
