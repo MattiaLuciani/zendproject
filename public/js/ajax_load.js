@@ -11,6 +11,7 @@ $(window).scroll(function() {
          	function (data) {
          		//console.log(offset);
          		//offset+=6;
+         		console.log(data);
          		getObject.offset+=8;
          		for(var i = 0;i<data.length;i++){
          			createTemplate(data[i]);	
@@ -30,12 +31,13 @@ function createTemplate(object){
 	$(".content .content-wrapper .content-element").append("<div class = 'item'>"+
 		"<div class = 'inner'>"+
  			"<div class = 'wrapper'>"+
- 				"<img src='/zend/img/" + object.img +"'>"+
+ 				"<img src='/~grp_10/ZendProject/public/img/" + object.img +"'>"+
  				"<div class='coupon-info'>"+
  					"<span>"+object.price+"</span>"+
- 					"<button class='coupon-button'>Info</button>"+
- 				"</div>"+
-         		"<div class='item-popup'>"+
+ 					/*"<a href=/~grp_10/ZendProject/public/viewpromotion/" + object.promoid + ">Info</a>"*/
+ 					"<a href=public/viewpromotion/id/" + object.promoid + ">Info</a>"+
+ 				"</div>"+"</div>"+"</div>"
+         		/*"<div class='item-popup'>"+
 	         		"<i class='fa fa-close close-item-popup' style='color:black;position:relative;left:96%;top:5px;font-size:1.3rem'></i>"+
 	         		"<span class='company'>"+object.company+"</span>"+
 	         		"<div class='description'>"+
@@ -57,7 +59,7 @@ function createTemplate(object){
 					"</div>"+
 	         	"</div>"+
 	     	"</div>"+
-	 	"</div>");
+	 	"</div>"*/);
 
 }
 function initJQuery(){

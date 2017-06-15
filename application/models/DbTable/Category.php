@@ -12,9 +12,11 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
       
         return $row;
     }
+
     public function getAllCategories(){
     	return $row = $this->fetchAll($this->select());
     }
+
     public function deleteCategory($id)
     {
         $this->delete("catId = " . (int)$id);
@@ -29,6 +31,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
         $this->insert($data);
     }
+
     public function updateCategory($id,$name)
     {
         $data = array(
@@ -36,5 +39,19 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             );
 
     	$this->update($data, 'catId = '. (int)$id);
+    }
+    public function getAllCatArray(){
+
+        $categories = $this->getAllCategories()->toArray();
+
+        $category = array();
+
+        foreach ($categories as $item) {
+            $category[$item['name']] = $item['name'];
+            
+        }
+        
+        return $category;
+
     }
 }

@@ -1,0 +1,38 @@
+<div class="promotion-info">
+
+	<img src=<?=$this->baseUrl() . "/img/" . $this->escape($this->promotion->img)?>>
+	<label>Azienda
+		<span><?php echo $this->promotion->company?></span>
+	</label>
+	<label>Data di inizio
+		<span><?php echo $this->promotion->datebegin?></span>
+	</label>
+	<label>Data di fine
+		<span><?php echo $this->promotion->datefine?></span>
+	</label>
+	<label>Descrizione
+		<span><?php echo $this->promotion->datefine?></span>
+	</label>
+	<label>Prezzo
+		<span><?php echo $this->promotion->price?></span>
+	</label>
+	<?php if($this->acl->isAllowed($this->auth,'buy')) : ?>
+		<?php if($this->validation) : ?>
+		<a href=<?= $this->url(array(
+       						 'controller' => 'public',
+       						 'action'     => 'buypromotion',
+       						 'id' => $this->promotion->promoid
+        					),
+        					'default',true
+   						 );
+				?>
+		>
+		Stampa</a>
+		<?php endif ?>
+
+		<?php if(!$this->validation) :?>
+			<span style="color: red">Coupon gia' e' stato acquistato</span>
+		<?php endif ?>
+
+	<?php endif ?>
+</div>

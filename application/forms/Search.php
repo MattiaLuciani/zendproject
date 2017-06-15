@@ -3,15 +3,14 @@
 class Application_Form_Search extends Zend_Form{
 		
 	public function init(){
-		$category = new Zend_Form_Element_Select('category');
 
-		$category->addMultiOptions(array(
-					"0"=> "Tutte le categorie",
-				 	"1"=> "Auto",
-				 	"2"=> "Informatica",
-				 	"3"=> "Elettronica",
-				 	"4"=> "Abbigliamento",
-				 	"5"=> "Alimentari"));
+		$category = new Zend_Form_Element_Select('category');
+	    $category_model = new Application_Model_DbTable_Category;
+
+	    $categories = $category_model->getAllCatArray();
+	    $categories['Tutte le categorie'] = 'Tutte le categorie';
+
+		$category->addMultiOptions($categories);		 	
 
 		$category->setAttrib("name","category");
 		$input = new Zend_Form_Element_Text('input');
@@ -22,7 +21,7 @@ class Application_Form_Search extends Zend_Form{
 
 		$this->addElements(array($category,$input,$button));
 
-		$this->setDecorators(array(array('ViewScript',array('viewScript'=>'searchForm.phtml'))));
+		$this->setDecorators(array(array('ViewScript',array('viewScript'=>'public/formscripts/searchForm.phtml'))));
 
 		$this->setAction("/public/search")->setMethod('get');
 	}

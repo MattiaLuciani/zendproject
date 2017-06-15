@@ -85,9 +85,21 @@
 									<span class="price" style="">
 									<?php echo $this->escape($promotion->price);?>	
 									</span>
-									<button class="coupon-button">Info</a>		
+									<a href=<?= $this->url(array(
+                       						 'controller' => 'public',
+                       						 'action'     => 'viewpromotion',
+                       						 'id' => $promotion->promoid
+                        					),
+                        					'default',true
+                   						 );
+                    				?>>Info</a>		
 								</div>
-						 		<div class="item-popup">
+						</div>
+					</div>
+
+				</div>
+
+						 		<!--<div class="item-popup">
 						 			<i class="fa fa-close close-item-popup" style="color:black;position:relative;left:96%;top:5px;font-size:1.3rem"></i>
 									<span class="company"><?php echo $this->escape($promotion->company);?></span>
 
@@ -118,12 +130,13 @@
 						</div>
 					</div>
 				</div>
-
+			-->
 			<?php endforeach; ?>
 
 		</div>
 	</div>
 </div>
- <?= $this->headScript()->appendFile($this->baseUrl() . '/js/item_anim.js'); ?>
- <?= $this->headScript()->appendFile($this->baseUrl() . '/js/modal.js'); ?>
+
+ <?php $this->headScript()->appendFile($this->baseUrl() . '/js/item_anim.js'); ?>
+ <?php $this->headScript()->appendFile($this->baseUrl() . '/js/modal.js'); ?>
  <?php $this->headScript()->appendFile($this->baseUrl() . '/js/ajax_load.js'); ?>

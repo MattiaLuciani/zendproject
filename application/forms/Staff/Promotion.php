@@ -50,6 +50,6 @@ class Application_Form_Staff_Promotion extends Zend_Form{
 			'label' => 'inviare' 
 		));
 
-		$this->setDecorators(array(array('ViewScript',array('viewScript'=>'staff/PromotionForm.phtml'))));
+		$this->setDecorators(array(array('ViewScript',array('viewScript'=>'staff/formscripts/PromotionForm.phtml'))));
 	}
 }

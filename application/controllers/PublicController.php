@@ -11,7 +11,7 @@ class PublicController extends Zend_Controller_Action {
         $this->view->searchForm = new Application_Form_Search();
         $this->_authService = new Application_Service_Auth();
         $this->view->role = $this->getUserRole();
-
+        $this->acl = new Application_Model_Acl;
         //$adapter = $this->_authService->getAuthAdapter(array("username" => "admin0","password" =>"admin0"));
         //$this->_authService->authenticate($adapter);
         //Zend_Debug::dump($this->getUserRole(),"PublicController [userRole] : ");
@@ -68,10 +68,11 @@ class PublicController extends Zend_Controller_Action {
         $category = $this->getRequest()->getParam('category'); 
         $keyword = $this->getRequest()->getParam('search');
 
-        $promotion = new Application_Model_DbTable_Promotion();
-
+        $promotion = new Application_Model_DbTable_Promotion;
+       // Zend_Debug::dump($promotion->getPromotionByKeyWord($keyword));
+        $promotion->getPromotionByKeyWord($keyword);
         if($category!="Tutte le categorie"){
-            $this->view->promotion = $promotion->fetchAll($promotion->select('*')->where("category= ? ",$category));
+            /*Da sistemare*/$this->view->promotion = $promotion->fetchAll($promotion->select('*')->where("category= ? ",$category));
             $this->view->companies = $promotion->fetchAll($promotion->select()->distinct()->from(array('c' => 'promotion'),'company')->where("category = ?",$category));
             $this->categories = null;
         }
@@ -98,10 +99,33 @@ class PublicController extends Zend_Controller_Action {
         // action body
         
     }
+    public function viewpromotionAction(){
 
-    /*private function getFilterForm(){
-        
-    }*/
+        $id = $this->getRequest()->getParam('id');
+        $model = new Application_Model_DbTable_Promotion;
+        $coupon_model = new Application_Model_DbTable_Coupon;
+
+        $this->view->validation= $coupon_model->checkCoupon($id,$this->_authService->getIdentity()->username);
+        $this->view->acl = $this->acl;
+        $this->view->auth = $this->getUserRole();
+        //Zend_Debug::dump($this->_authService);
+        $this->view->promotion = $model->getPromotion($id);
+    }
+    public function buypromotionAction(){
+
+        $id = $this->getRequest()->getParam('id');
+
+        $username = $this->_authService->getIdentity()->username;
+        $model = new Application_Model_DbTable_Coupon;
+
+        if($model->checkCoupon($id,$username)){
+            $model->addCoupon($id,$username);
+        }
+        else{
+            ;
+        }
+
+    }
     public function authenticateAction() {
 
         $request = $this->getRequest();

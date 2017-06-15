@@ -8,16 +8,22 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
 
         public function getPromotion($promoid)
         {
-        $promoid = (int)$promoid;
-        $row = $this->fetchRow('promoid = ' . $promoid);
-        if (!$row) {
-        throw new Exception("Could not find row $promoid");
+            $promoid = (int)$promoid;
+            $row = $this->fetchRow('promoid = ' . $promoid);
+                if (!$row) {
+                     throw new Exception("Could not find row $promoid");
+                }
+            return $row;
         }
-        return $row;
+        /*Da finire*/
+        public function getPromotionByKeyWord($array){
+            
         }
 
         public function getAllPromotions(){
+
             return $this->fetchAll($this->select());
+
         }
         public function addPromotion($company,$datebegin,$datefine,$category,$description,$price)
         {
@@ -44,6 +50,7 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
             'description' =>$description,
             'price' => $price
             );
+
             $this->update($data, 'promoid = '. (int)$promoid);
         }
 
