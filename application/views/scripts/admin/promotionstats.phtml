@@ -1,0 +1,18 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/table_style.css'); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/admin_panel_style.css'); ?>
+<table class="table-fill">
+	<thead>
+	<tr>
+		<?php echo $this->tableHeaderGenerator($this->model[0]); ?>
+		<th>coupon emessi</a></th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<?php foreach($this->model as $item) :?>
+	<tr>
+	<?php echo $this->tableRowGenerator($item) ?>
+	<td><?php echo $this->coupons->getCouponsByPromotion($item->promoid)->count()?></td>
+	</tr>
+<?php endforeach; ?>
+	</tbody>
+</table>

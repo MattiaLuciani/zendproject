@@ -44,7 +44,7 @@ class PublicController extends Zend_Controller_Action {
     public function onscrollAction(){
         //Zend_Debug::dump("aa");
         $offset = $this->getRequest()->getParam('offset');
-        $promotion = new Application_Model_DbTable_Promotion();
+        $promotion = new Application_Model_DbTable_Promotion;
 
         $count = $promotion->select('count(*)');
         {
@@ -86,13 +86,13 @@ class PublicController extends Zend_Controller_Action {
     }
     public function promotionAction() {
         $this->view->page_name = "promotion";
-        $promotion = new Application_Model_DbTable_Promotion();
+        $promotion = new Application_Model_DbTable_Promotion;
         $this->view->promotion = $promotion->fetchAll();
     }
 
     public function companyAction() {
         $this->view->page_name = "company";
-        $company = new Application_Model_DbTable_Company();
+        $company = new Application_Model_DbTable_Company;
         $this->view->company = $company->fetchAll();
     }
     public function loginAction() {

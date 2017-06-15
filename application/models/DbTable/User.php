@@ -19,6 +19,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
         
     }
+    public function getAllUsers(){
+        return $this->fetchAll($this->select()->where("role = 'user'"));
+    }
     public function addUser($username,$password,$role,$name,$surname,$email )
     {
         $data = array(

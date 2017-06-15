@@ -14,6 +14,15 @@ class Application_Model_DbTable_Coupon extends Zend_Db_Table_Abstract
           }
           return $row;
         }
+        public function getCouponsByPromotion($promoId){
+          return  $this->fetchAll($this->select()->where('promoId = ' . $promoId));  
+        }
+        public function getCouponsByUser($username){
+          return  $this->fetchAll($this->select()->where('username = ' . "'" . $username . "'"));  
+        }
+        public function getAllCoupons(){
+          return $this->fetchAll($this->select());
+        }
         public function checkCoupon($promoId,$username)
         { 
             $rowset = $this->fetchAll($this->select()->where('promoId = ' . $promoId)->where('username = ' . "'" . $username . "'"));

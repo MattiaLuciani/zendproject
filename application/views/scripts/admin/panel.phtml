@@ -235,3 +235,32 @@
 </div>
 <?php endif; ?>
 
+
+<?php if($this->type == 'stats') : ?>
+	<div style="height: 100%">
+	<span style = "position: relative;left: 45%;top:50px;font-size: 20px">Totali coupons emessi : <?= $this->count?></span>
+	<div class="wrapper" style="display: flex;justify-content: space-around;position: relative;top:30%">
+		<a style = "font-size: 50px;padding:10px 60px;background-color: #8bc34a;" href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'userstats',
+ 
+			                        ),
+			                        'default',true
+			                    );
+         		?>>
+         			
+ 		Utenti</a>
+		<a style = "font-size: 50px;padding:10px 40px;background-color: #ff5722;" href=<?= $this->url(array(
+			                        'controller' => 'admin',
+			                        'action'     => 'promotionstats',
+ 
+			                        ),
+			                        'default',true
+			                    );
+         		?>>
+         			
+ 		Promozioni</i></a>
+	</div>
+	</div>
+<?php endif; ?>
+

@@ -15,26 +15,46 @@ class AdminController extends Zend_Controller_Action{
 		$request = $this->getRequest();
 		$model;
 		//Zend_Debug::dump($this->getRequest()->getParam('param'),"Param");
-		if($request = $this->getRequest()->getParam('param') == 'user'){
-			$model = new Application_Model_DbTable_User();
+		if($this->getRequest()->getParam('param') == 'user'){
+			$model = new Application_Model_DbTable_User;
 			$this->view->type = 'user';
 			$this->view->model = $model->fetchAll($model->select('*')->limit(8));
 			//$this->view->model = $model->getPaginatedUsers(1);
 		}
-		if($request = $this->getRequest()->getParam('param') == 'company'){
+		if($this->getRequest()->getParam('param') == 'company'){
 			$model = new Application_Model_DbTable_Company;
 			$this->view->type = 'company';
 			$this->view->model = $model->fetchAll($model->select('*')->limit(8));
 
 		}
-		if($request = $this->getRequest()->getParam('param') == 'category'){
+		if($this->getRequest()->getParam('param') == 'category'){
 			$model = new Application_Model_DbTable_Category;
 			$this->view->type = 'category';
 			$this->view->model = $model->getAllCategories();
 		}
-		if($request = $this->getRequest()->getParam('param') == 'stats'){
+		if($this->getRequest()->getParam('param') == 'stats'){
+
+			$this->view->type = "stats";
+			$coupon_model = new Application_Model_DbTable_Coupon;
+			$coupon_model_count = $coupon_model->getAllCoupons()->count();
+			$this->view->count = $coupon_model_count;
 
 		}
+	}
+
+	public function userstatsAction(){
+
+		$user_model = new Application_Model_DbTable_User;
+		$coupon_model = new Application_Model_DbTable_Coupon;
+		$this->view->model = $user_model->getAllUsers();
+		$this->view->coupons = $coupon_model;
+	}
+
+	public function promotionstatsAction(){
+		$coupon_model = new Application_Model_DbTable_Coupon;
+		$promotion_model = new Application_Model_DbTable_Promotion;
+		$this->view->model = $promotion_model->getAllPromotions();
+		$this->view->coupons = $coupon_model; 
 	}
 
 	public function edituserAction(){
