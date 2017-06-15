@@ -5,16 +5,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     protected $_name = 'user';
 
-    public function getUser($username)
-    {
-        $row = $this->fetchRow('username = ' . $username);
-
-        if (!$row) {
-
-            throw new Exception("Could not find row $username");
-        }
-        return $row->toArray();
-    }
 
     public function getPaginatedUsers($paged = null){
         $select = $this->select();
@@ -43,27 +33,28 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     }
 
 
-    public function updateUser($usernam,$password,$name,$surname,$email){
+    public function updateUser($username,$password,$name,$surname,$email){
       $data = array(
           'password' => $password,
           'name' => $name,
           'surname' =>$surname,
           'email' => $email);
 
-        $this->update($data, 'username = '. $usernam);
+        $this->update($data, 'username = '  . "'" . $username . "'");
     }
 
 
     public function deleteUser($username)
     {
-        $this->delete($username);
+
+        $this->delete('username = '  . "'" . $username . "'");
     }
 
 
-    public function getUserByName($usrName)
+    public function getUserByName($username)
     {
 
-      $row =$this->fetchRow($this->select()->where('username = ?', $usrName));
+      $row =$this->fetchRow($this->select()->where('username = ?', $username));
       
         return $row;
     }

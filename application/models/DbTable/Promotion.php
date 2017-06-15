@@ -13,41 +13,44 @@ class Application_Model_DbTable_Promotion extends Zend_Db_Table_Abstract
         if (!$row) {
         throw new Exception("Could not find row $promoid");
         }
-        return $row->toArray();
+        return $row;
         }
 
-
+        public function getAllPromotions(){
+            return $this->fetchAll($this->select());
+        }
         public function addPromo($company,$datebegin,$datefine,$category,$description,$price)
         {
-        $data = array(
-        'company' => $company,
-        'datebegin' => $datebegin,
-        'datefine'=> $datefine,
-        'category' => $category,
-        'description' =>$description,
-        'price' => $price,
-        );
-        $this->insert($data);
+            $data = array(
+            'company' => $company,
+            'datebegin' => $datebegin,
+            'datefine'=> $datefine,
+            'category' => $category,
+            'description' =>$description,
+            'price' => $price,
+            );
+
+            $this->insert($data);
         }
 
 
         public function updatePromo($company,$datebegin,$datefine,$category,$description,$price)
          {
-        $data = array(
-        'company' => $company,
-        'datebegin' => $datebegin,
-        'datefine'=> $datefine,
-        'category' => $category,
-        'description' =>$description,
-        'price' => $price,
-        );
-        $this->update($data, 'id = '. (int)$promoid);
+            $data = array(
+            'company' => $company,
+            'datebegin' => $datebegin,
+            'datefine'=> $datefine,
+            'category' => $category,
+            'description' =>$description,
+            'price' => $price,
+            );
+            $this->update($data, 'id = '. (int)$promoid);
         }
 
 
         public function deletePromo($promoid)
         {
-        $this->delete('id =' . (int)$promoid);
+             $this->delete('id =' . (int)$promoid);
         }
 }
 

@@ -64,15 +64,21 @@ class AdminController extends Zend_Controller_Action{
             //$company->updateCompany($id,$name,$email,$website,$phone,$address,$description);
             $model->updateUser($username,$password,$name,$surname,$email);
 
-            //$this->_helper->redirector('panel');
+            $this->_helper->redirector('panel');
           
         }
 	  }
 	}
 
 	public function deleteuserAction(){
-		$id = $this->getRequest();
 
+		$this->_helper->viewRenderer->setNoRender();
+		$username = $this->getRequest()->getParam('param');
+		$model = new Application_Model_DbTable_User;
+		
+		$model->deleteUser($username);
+
+		$this->_helper->redirector('panel');
 
 	}
 	public function addstaffAction(){
@@ -102,7 +108,7 @@ class AdminController extends Zend_Controller_Action{
 	        }
 	    }
 	}
-	
+
 	public function editcompanyAction(){
 
 		$id = $this->getRequest()->getParam('param');
@@ -144,7 +150,12 @@ class AdminController extends Zend_Controller_Action{
     }
 
 	public function deletecompanyAction(){
-		$id = $this->getRequest();
+
+		$this->_helper->viewRenderer->setNoRender();
+		$id = $this->getRequest()->getParam('param');
+		$model = new Application_Model_DbTable_Company;
+		$model->deleteCompany($id);
+		$this->_helper->redirector('panel');
 	}
 	public function addcompanyAction(){
 
@@ -177,7 +188,39 @@ class AdminController extends Zend_Controller_Action{
 
 	}
 	public function editcategoryAction(){
+		$id = $this->getRequest()->getParam('param');
 
+		$model = new Application_Model_DbTable_Category;
+
+		$category = $model->getCategory($id);
+		$form = new Zend_Form;
+		$form->setMethod('post');
+
+		$form->addElement('text' , 'name', array(
+			'label' => 'nome',
+			'filters' => array('StripTags','StringTrim'),
+			'required' => false 
+		));
+		$form->addElement('submit' , 'submit', array(
+			'label' => 'inviare' 
+		));
+		$form->populate($category->toArray());
+		$this->view->form = $form;
+
+		if ($this->getRequest()->isPost()){
+
+			$formData = $this->getRequest()->getPost();
+
+			if ($form->isValid($formData)) {
+				
+
+				$name = $form->getValue('name');
+				//$id = $form->getValue('id');
+
+				$model->updateCategory($id,$name);
+				$this->_helper->redirector('panel');
+			}
+		}
 	}
 
 	public function addcategoryAction(){
@@ -215,5 +258,12 @@ class AdminController extends Zend_Controller_Action{
 		}
 
 
+	}
+	public function deletecategoryAction(){
+		$this->_helper->viewRenderer->setNoRender();
+		$id = $this->getRequest()->getParam('param');
+		$model = new Application_Model_DbTable_Category;
+		$model->deleteCategory($id);
+		$this->_helper->redirector('panel');
 	}
 }

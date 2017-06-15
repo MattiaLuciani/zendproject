@@ -1,0 +1,51 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/table_style.css'); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl().'/css/admin_panel_style.css'); ?>
+
+
+<div class="table-title">
+	<h3>Tabella di Promozioni</h3>
+</div>
+<table class="table-fill">
+	<thead>
+	<tr>
+		<?php echo $this->tableHeaderGenerator($this->model[0]); ?>
+		<th class="text-left">operazioni</th>
+	</tr>
+	</thead>
+	<tbody class="table-hover">
+	<?php foreach($this->model as $item) : ?>
+	<tr>
+	<?php echo $this->tableRowGenerator($item) ?>
+	<td class="operations">
+		<ul class="operation-list">
+			<li class="operation update">
+				<a href = <?= $this->url(array(
+		                        'controller' => 'staff',
+		                        'action'     => 'editpromotion',
+		                        'param' => $item->promoid
+		                        ),
+		                        'default',true
+		                    );
+                 		?>
+                 >
+                 	<i class="fa fa-pencil-square-o" style="font-size: 20px" aria-hidden="true"></i>
+                </a>
+            </li>
+			<li class="operation delete">
+				<a href=<?= $this->url(array(
+		                        'controller' => 'staff',
+		                        'action'     => 'deletepromotion',
+		                        'param' => $item->promoid
+		                        ),
+		                        'default',true
+		                    );
+                 		?>
+                 >
+                 	<i class="fa fa-minus-circle" style="font-size: 20px" aria-hidden="true"></i>
+             	</a>
+         	</li>
+		</ul>
+	</td>
+<?php endforeach ?>
+	</tbody>
+</table>

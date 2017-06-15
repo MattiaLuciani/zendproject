@@ -17,7 +17,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
     }
     public function deleteCategory($id)
     {
-        $this->delete($id);
+        $this->delete("catId = " . (int)$id);
     }
 
     public function addCategory($id,$name)
@@ -35,6 +35,6 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
             'name' => $name
             );
 
-    	$this->update($data, 'id = '. $id);
+    	$this->update($data, 'catId = '. (int)$id);
     }
 }
